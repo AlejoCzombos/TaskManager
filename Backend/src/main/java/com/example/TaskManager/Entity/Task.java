@@ -1,12 +1,15 @@
 package com.example.TaskManager.Entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
 @MappedSuperclass
-@Data
+@Getter
+@Setter
 public abstract class Task {
 
     @Id
@@ -23,7 +26,12 @@ public abstract class Task {
     @Column(name = "type_task", nullable = false, length = 12)
     private String typeTask;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "creation_date", nullable = false)
     private LocalDate creationDate;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", updatable = false)
+    private User user;
 
 }
