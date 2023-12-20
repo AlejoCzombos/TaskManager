@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Table(name = "user")
+@Table(name = "db_user")
 public class User {
 
     @Id
@@ -21,6 +21,15 @@ public class User {
 
     @Column(name = "username", nullable = false, unique = true, length = 50)
     private String username;
+
+    @Column(name = "email", nullable = false, unique = true, length = 50)
+    private String email;
+
+    @Column(name = "firstname", nullable = false, length = 15)
+    private String firstname;
+
+    @Column(name = "lastname", nullable = false, length = 15)
+    private String lastname;
 
     @Column(name = "password", nullable = false)
     private String password;

@@ -1,16 +1,19 @@
 package com.example.TaskManager.Entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
-@MappedSuperclass
-@Getter
-@Setter
-public abstract class Task {
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Entity
+@Table(name = "task")
+public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +26,8 @@ public abstract class Task {
     @Column(name = "description", nullable = false, length = 250)
     private String description;
 
-    @Column(name = "type_task", nullable = false, length = 12)
-    private String typeTask;
+    @Column(name = "finished")
+    private Boolean finished = false;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "creation_date", nullable = false)
