@@ -4,7 +4,6 @@ import com.example.TaskManager.Entity.Task;
 import com.example.TaskManager.Service.TaskServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,7 +11,6 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/tasks")
-@CrossOrigin(origins = "http://localhost:8080")
 public class TaskController {
 
     private final TaskServiceImpl service;
