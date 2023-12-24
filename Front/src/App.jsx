@@ -5,6 +5,7 @@ import {Toaster} from 'react-hot-toast'
 import {TasksPage} from './pages/TasksPage'
 import {TasksFormPage} from './pages/TasksFormPage'
 import {Navbar} from "./components/Navbar"
+import {Footer} from './components/Footer'
 
 function App() {
   return(
@@ -18,6 +19,7 @@ function App() {
           <Route path="/tasks/:id" element={<TasksFormPage/>} />
         </Routes>
         <Toaster/>
+        <Footer/>
     </BrowserRouter>
   )
 }
