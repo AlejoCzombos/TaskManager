@@ -4,46 +4,116 @@ import {Link} from 'react-router-dom'
 export function Navbar() {
   return (
     <div>
-      <header className="flex justify-between h-16 px-4 border-b shrink-0 md:px-6">
-            <nav className="flex items-center gap-6 text-lg font-medium">
-              <Link to="tasks">
-                <h2>TaskManager</h2>
-              </Link>
-              <Link to="tasks">
-                <h2 className="text-gray-500 dark:text-gray-400">Tareas</h2>
-              </Link>
-              <Link to="tasks">
-                <h2 className="text-gray-500 dark:text-gray-400">Estadisticas</h2>
-              </Link>
-            </nav>
-            <div className="flex items-center">
-              <button
-                type="button"
-                aria-pressed="false"
-                data-state="off"
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground bg-transparent h-10 px-3"
-                aria-label="Toggle Dark Mode"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  className="h-4 w-4"
-                >
-                  <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-                </svg>
-              </button>
-              <button className="bg-">
-                Iniciar Sesión
-              </button>
-            </div>
-          </header>
+      <div className="flex flex-col w-full md:w-[300px]">
+          <div className="flex items-center space-x-2 mb-2 md:mb-6">
+            {/*<Avatar alt="User profile" src="/placeholder.svg?height=40&width=40"/>*/}
+            <span className="text-white font-bold">Maclinz</span>
+          </div>
+          <nav className="flex flex-col space-y-2">
+            <Link className="flex items-center space-x-2 text-green-500" href="#">
+              <ListIcon className="h-6 w-6" />
+              <span>All Tasks</span>
+            </Link>
+            <Link className="flex items-center space-x-2 text-gray-400" href="#">
+              <StarIcon className="h-6 w-6" />
+              <span>Important!</span>
+            </Link>
+            <Link className="flex items-center space-x-2 text-gray-400" href="#">
+              <CheckIcon className="h-6 w-6" />
+              <span>Completed!</span>
+            </Link>
+            <Link className="flex items-center space-x-2 text-gray-400" href="#">
+              <BoldIcon className="h-6 w-6" />
+              <span>Do It Now</span>
+            </Link>
+          </nav>
+          <button className="mt-2 md:mt-4">Sign In / Sign Out</button>
+        </div>
     </div>
+  )
+}
+
+
+function StarIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+    </svg>
+  )
+}
+
+function BoldIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M14 12a4 4 0 0 0 0-8H6v8" />
+      <path d="M15 20a4 4 0 0 0 0-8H6v8Z" />
+    </svg>
+  )
+}
+
+
+function CheckIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  )
+}
+
+
+function ListIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="8" x2="21" y1="6" y2="6" />
+      <line x1="8" x2="21" y1="12" y2="12" />
+      <line x1="8" x2="21" y1="18" y2="18" />
+      <line x1="3" x2="3.01" y1="6" y2="6" />
+      <line x1="3" x2="3.01" y1="12" y2="12" />
+      <line x1="3" x2="3.01" y1="18" y2="18" />
+    </svg>
   )
 }

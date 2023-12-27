@@ -10,8 +10,6 @@ import {Footer} from './components/Footer'
 function App() {
   return(
     <BrowserRouter>
-      <Navbar/>
-      <Navigation/>
         <Routes>
           <Route path="/" element={<Navigate to="/tasks"/>}/>
           <Route path="/tasks" element={<TasksPage/>} />
@@ -19,7 +17,6 @@ function App() {
           <Route path="/tasks/:id" element={<TasksFormPage/>} />
         </Routes>
         <Toaster/>
-        <Footer/>
     </BrowserRouter>
   )
 }
