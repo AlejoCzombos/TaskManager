@@ -8,6 +8,7 @@ import com.example.TaskManager.Security.Payload.JwtResponse;
 import com.example.TaskManager.Security.Payload.LoginRequest;
 import com.example.TaskManager.Security.Payload.RegisterRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,16 +17,17 @@ public class AuthService {
 
     private final UserRepository repository;
     private final JwtService jwtService;
+    private final PasswordEncoder passwordEncoder;
 
     public JwtResponse login(LoginRequest request){
+
         return null;
     }
 
     public JwtResponse register(RegisterRequest request){
         User user = User.builder()
                 .username(request.getUsername())
-                .email(request.getEmail())
-                .password(request.getPassword())
+                .password(passwordEncoder.encode(request.getPassword()))
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
                 .role(Role.USER)

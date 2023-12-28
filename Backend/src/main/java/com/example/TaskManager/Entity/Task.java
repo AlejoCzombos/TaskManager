@@ -29,6 +29,9 @@ public class Task {
     @Column(name = "finished")
     private Boolean finished = false;
 
+    @Column(name = "important")
+    private Boolean important = false;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "creation_date", nullable = false)
     private LocalDate creationDate;

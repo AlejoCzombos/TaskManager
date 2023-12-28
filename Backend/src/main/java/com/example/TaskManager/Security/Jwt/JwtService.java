@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
-import java.util.HashMap;
 
 @Service
 public class JwtService {
@@ -17,19 +16,15 @@ public class JwtService {
     @Value("${jwt.secret}")
     private String SECRET_KEY;
 
-    public String getToken(User user) {
-        return getToken(new HashMap<>(), user);
-    }
-
-    private String getToken(HashMap<String,Object> extraClaims, User user) {
+    public String getToken(User user){
         return Jwts
                 .builder()
-                .claim("firstname", user.getFirstname())
-                .claim("lastname", user.getLastname())
-                .claim("id", user.getId())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis()+1000*60*24))
                 .signWith(getKey())
+                .claim("firstname", user.getFirstname())
+                .claim("lastname", user.getLastname())
+                .claim("id", user.getId())
                 .compact();
     }
 
