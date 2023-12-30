@@ -3,9 +3,9 @@ import {Link} from 'react-router-dom'
 
 export function Navbar() {
   return (
-    <div>
-      <div className="flex flex-col w-full md:w-[300px]">
-          <div className="flex items-center space-x-2 mb-2 md:mb-6">
+    <div key="1" className="bg-[#202020] min-h-screen p-2 md:p-8">
+      <div className="flex flex-col justify-between md:w-[300px] h-[100vh]">
+          <div className="flex items-center mb-2 md:mb-6">
             {/*<Avatar alt="User profile" src="/placeholder.svg?height=40&width=40"/>*/}
             <span className="text-white font-bold">Maclinz</span>
           </div>
@@ -29,7 +29,7 @@ export function Navbar() {
           </nav>
           <button className="mt-2 md:mt-4">Sign In / Sign Out</button>
         </div>
-    </div>
+        </div>
   )
 }
 
