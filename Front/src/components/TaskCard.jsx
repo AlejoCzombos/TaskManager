@@ -1,34 +1,54 @@
 export function TaskCard() {
   return (
-        <div
-    class="bg-card text-card-foreground shadow-sm border border-gray-200 rounded-lg p-4 max-w-md mx-auto"
-    data-v0-t="card">
-    <div class="flex flex-col space-y-1.5 p-6">
-        <h3 class="tracking-tight font-bold text-lg">Task Title</h3>
-        <p class="text-sm text-gray-500">Task Description</p>
-    </div>
-    <div class="p-6 flex flex-col gap-2 mt-4">
-    <div className="flex items-center gap-2">
-            <FlagIcon className="w-4 h-4 text-red-500" />
-            <span className="text-sm">Priority</span>
-            </div>
-        <div class="flex items-center gap-2">
-        <div class="inline-flex items-center border w-fit font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent hover:bg-primary/80 bg-blue-200 text-blue-700 px-2 py-1 rounded-md text-xs">
-            Incomplete
+      <div class="border-2 border-zinc-700 rounded-xl 
+      bg-zinc-800
+      h-48 w-50 p-4
+      text-white
+      flex flex-col justify-between">
+        <div>
+          <h2 className="text-lg mb-1.5 font-bold">Aprender Testing</h2>
+          <p className="text-sm font-light">Aprender JUnit en Spring Boot para probar REST API</p>
         </div>
-        <div class="inline-flex items-center border w-fit font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent hover:bg-primary/80 bg-yellow-200 text-yellow-700 px-2 py-1 rounded-md text-xs">
-            In Progress
+
+        <div className="flex flex-row justify-between">
+          
+          <div className="">
+            <p className=" text-xs font-light mb-2">20/10/2000</p>
+            <a href="#" className="text-sm bg-green-500 rounded-full p-1">Completada</a>
+          </div>
+
+          <div className="flex flex-row items-end mb-1 gap-2.5">
+            <PenIcon className="size-5 fill-zinc-400"/>
+            <TrashIcon className="size-5 fill-zinc-400"/>
+          </div>
         </div>
-        <div class="inline-flex items-center border w-fit font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent hover:bg-primary/80 bg-green-200 text-green-700 px-2 py-1 rounded-md text-xs">
-            Complete
-        </div>
-        </div>
-        <div className="flex items-center gap-2 mt-4">
-            <CalendarDaysIcon className="w-4 h-4 text-gray-500" />
-            <span className="text-sm">Creation Date</span>
-            </div>
-    </div>
-    </div>
+      </div>
+  )
+}
+
+function TrashIcon(props) {
+  return (
+    <svg 
+    {...props}
+    xmlns="http://www.w3.org/2000/svg" 
+    height="16" 
+    width="14" 
+    viewBox="0 0 448 512">
+      <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+    </svg>
+  )
+}
+
+function PenIcon(props) {
+  return(
+    <svg 
+    {...props	}
+    xmlns="http://www.w3.org/2000/svg" 
+    height="16" 
+    width="16" 
+    viewBox="0 0 512 512">
+      <path d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"/>
+    </svg>
   )
 }
 
