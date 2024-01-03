@@ -25,9 +25,9 @@ public class TaskController {
         return service.findAll();
     }
 
-    @PostMapping
-    public ResponseEntity<Task> create(@RequestBody Task task){
-        return service.create(task);
+    @PostMapping()
+    public ResponseEntity<Task> create(@RequestBody Task task, @RequestParam("userId") Long userId){
+        return service.create(task, userId);
     }
 
     @PutMapping

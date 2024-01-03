@@ -11,7 +11,7 @@ public interface TaskService {
 
     List<Task> findAll();
 
-    ResponseEntity<Task> create(Task task);
+    ResponseEntity<Task> create(Task task, Long userId);
 
     ResponseEntity<Task> update(Task task);
 

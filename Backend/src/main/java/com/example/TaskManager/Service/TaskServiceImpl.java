@@ -1,7 +1,9 @@
 package com.example.TaskManager.Service;
 
 import com.example.TaskManager.Entity.Task;
+import com.example.TaskManager.Entity.User;
 import com.example.TaskManager.Repository.TaskRepository;
+import com.example.TaskManager.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.SubmissionPublisher;
 
 @RequiredArgsConstructor
 @Service
@@ -19,6 +22,7 @@ public class TaskServiceImpl implements TaskService {
     private final Logger log = LoggerFactory.getLogger(TaskServiceImpl.class);
 
     private final TaskRepository repository;
+    private final UserRepository userRepository;
 
     @Override
     public ResponseEntity<Task> findById(Long taskId) {
@@ -40,12 +44,22 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public ResponseEntity<Task> create(Task task) {
+    public ResponseEntity<Task> create(Task task, Long userId) {
+
+        Optional<User> optionalUser = userRepository.findById(userId);
+
+        if (optionalUser.isEmpty()){
+            log.warn("Trying to create a task with non-existent userId");
+            return ResponseEntity.notFound().build();
+        }
 
         if (task.getId() != null){
             log.warn("Trying to create a task with id");
             return ResponseEntity.badRequest().build();
         }
+
+        User user = optionalUser.get();
+        task.setUser(user);
 
         Task result = repository.save(task);
 
