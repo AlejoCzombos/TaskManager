@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom'
+
 export function TaskCard() {
   return (
       <div class="border-2 border-zinc-700 rounded-xl 
@@ -18,8 +20,12 @@ export function TaskCard() {
           </div>
 
           <div className="flex flex-row items-end mb-1 gap-2.5">
-            <PenIcon className="size-5 fill-zinc-400"/>
-            <TrashIcon className="size-5 fill-zinc-400"/>
+            <Link>
+              <PenIcon className="size-5 fill-zinc-500 hover:fill-white transition hover:scale-125"/>
+            </Link>
+            <Link>
+              <TrashIcon className="size-5 fill-zinc-500 hover:fill-red-500 transition hover:scale-125"/>
+            </Link>
           </div>
         </div>
       </div>

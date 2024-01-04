@@ -7,8 +7,8 @@ export function SideMenuItem({children, to, text, ...props}) {
     text-sm hover:font-semibold
     text-zinc-500 hover:text-white
     fill-zinc-500 hover:fill-white
-    hover:bg-zinc-600 hover:py-5
-    transition duration-500 ease-in'
+    hover:bg-zinc-600 hover:py-4
+    transition-all duration-200 ease-in'
      to={to}
      {...props}
     >
