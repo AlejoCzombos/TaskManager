@@ -2,8 +2,8 @@ import {Link} from 'react-router-dom'
 
 export function TaskCard() {
   return (
-      <div class="border-2 border-zinc-700 rounded-xl 
-      bg-zinc-800
+      <div class="border-2 border-zinc-600 rounded-xl 
+      bg-zinc-700
       h-48 w-50 p-4
       text-white
       flex flex-col justify-between">
