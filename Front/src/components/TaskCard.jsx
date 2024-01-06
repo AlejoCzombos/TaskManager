@@ -20,7 +20,7 @@ export function TaskCard() {
           </div>
 
           <div className="flex flex-row items-end mb-1 gap-2.5">
-            <Link>
+            <Link to={"/tasks/:4"}>
               <PenIcon className="size-5 fill-zinc-500 hover:fill-white transition hover:scale-125"/>
             </Link>
             <Link>

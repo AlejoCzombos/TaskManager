@@ -1,9 +1,12 @@
 import {Navigation} from '../components/Navigation'
 import {useForm} from 'react-hook-form'
+import {useParams} from 'react-router-dom'
 
 export function TasksFormPage() {
 
   const {register, handleSubmit, formState: {errors}, setValue} = useForm();
+
+  const params = useParams()
 
   const onSubmit = handleSubmit((value) => {
     console.log(value)
@@ -29,7 +32,7 @@ export function TasksFormPage() {
           required: "El título es requerido",
           maxLength: {
             value: 50,
-            message: "El título tiene que tener un maximo de 50 caracteres"
+            message: "El título puede tener un maximo de 50 caracteres"
           },
           minLength: {
             value: 5,
@@ -81,7 +84,11 @@ export function TasksFormPage() {
           />
         </div>
 
-        <button className=' bg-zinc-600 p-2 rounded-xl'>Crear tarea</button>
+        { params.id 
+          ? <button className=' bg-zinc-600 p-2 rounded-xl'>Actualizar tarea</button>
+          : <button className=' bg-zinc-600 p-2 rounded-xl'>Crear tarea</button>
+        }
+        
 
       </form>
     </div>
