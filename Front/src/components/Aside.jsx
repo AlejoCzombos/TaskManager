@@ -12,7 +12,7 @@ export function Aside() {
         
         <SideMenuItem
         text="Iniciar Sesion"
-        to="/register">
+        to="/login">
             <OutIcon className="size-8"/>
         </SideMenuItem>
     </div>

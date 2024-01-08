@@ -9,7 +9,7 @@ import {LoginPage} from './pages/LoginPage'
 import {RegisterPage} from './pages/RegisterPage'
 import {Aside} from './components/Aside'
 
-export const userContext = React.createContext()
+export const LoginContext = React.createContext()
 
 function App() {
 
@@ -28,10 +28,11 @@ function App() {
             <Route path="/tasks-create" element={<TasksFormPage/>} />
             <Route path="/tasks/:id" element={<TasksFormPage/>} />
           </Routes>
+        <button className="bg-red-700 w-10 h-10" onClick={() => setOpenLogin(true)}></button>
         </main>
         <Routes>
-          <Route path="/login" element={<LoginPage/>} />
-          <Route path="/register" element={<RegisterPage/>} />
+          <Route path="/login" element={<LoginPage open={openLogin} onClose={() => setOpenLogin(false)}/>} />
+          <Route path="/register" element={<RegisterPage open={openLogin} onClose={() => setOpenLogin(false)}/>} />
         </Routes>
         <Toaster/>
       </div>
