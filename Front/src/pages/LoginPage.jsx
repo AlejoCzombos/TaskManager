@@ -1,10 +1,14 @@
 import {useForm} from 'react-hook-form'
+import {AuthLogin} from '../api/auth.api'
 
 export function LoginPage() {
 
-    const {register, handleSubmit, formState: {errors}, setValue} = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm();
 
     const onSubmit = handleSubmit((value) => {
+      console.log(value)
+
+      const token = AuthLogin(value)
       console.log(value)
     })
 
