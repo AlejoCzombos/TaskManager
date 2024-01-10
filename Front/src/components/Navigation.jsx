@@ -1,9 +1,10 @@
 import {Link} from 'react-router-dom'
+import '../App.css'
 
 export function Navigation() {
     return (
         <div className='flex justify-between items-center m-4'>
-            <Link to="/tasks" className=' text-white font-bold text-3xl'>
+            <Link to="/tasks" className=' text-white font-bold text-3xl navigation'>
                 <h1>Tareas</h1>
             </Link>
             <Link to="/tasks-create">
