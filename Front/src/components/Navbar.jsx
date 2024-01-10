@@ -1,29 +1,30 @@
+import { useState } from 'react';
 import {SideMenuItem} from './SideMenuItem'
 
 export function Navbar() {
   return (
     <div>
-            <SideMenuItem 
-            text="All Tasks"
+            <SideMenuItem
+            text="Todas las Tareas"
             to="/tasks">
                 <HomeIcon className="size-6"/>
             </SideMenuItem>
 
-            <SideMenuItem 
-            text="Important!"
-            to="#">
+            <SideMenuItem
+            text="Importante!"
+            to="/important">
                 <ImportantIcon className="size-6"/>
             </SideMenuItem>
 
             <SideMenuItem 
-            text="Completed!"
-            to="#">
+            text="Completado!"
+            to="/completed">
                 <CheckIcon className="size-6"/>
             </SideMenuItem>
 
-            <SideMenuItem 
-            text="Do it Now"
-            to="#">
+            <SideMenuItem
+            text="Por hacer"
+            to="/todo">
                 <ListIcon className="size-6"/>
             </SideMenuItem>
 
