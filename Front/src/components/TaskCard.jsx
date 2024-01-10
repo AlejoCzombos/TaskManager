@@ -15,8 +15,8 @@ export function TaskCard() {
         <div className="flex flex-row justify-between">
           
           <div className="">
-            <p className=" text-xs font-light mb-2">20/10/2000</p>
-            <a href="#" className="text-sm bg-green-500 rounded-full p-1">Completada</a>
+            <p className="text-sm font-normal mb-2">20/10/2000</p>
+            <a href="#" className="text-sm bg-green-500/90 rounded-full p-1 px-2">Completada</a>
           </div>
 
           <div className="flex flex-row items-end mb-1 gap-2.5">
