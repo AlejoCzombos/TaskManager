@@ -1,12 +1,14 @@
 import {useForm} from 'react-hook-form'
-import {Navigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import {AuthRegister} from '../api/auth.api'
 
 export function RegisterPage({ open, onClose, children }) {
   
-  const {register, handleSubmit, formState: {errors}, watch} = useForm();
+    const {register, handleSubmit, formState: {errors}, watch} = useForm();
 
-    const onSubmit = handleSubmit((value) => {
+    const navigate = useNavigate();
+
+    const onSubmit = handleSubmit(async (value) => {
       const data = {
         firstname: value.firstname,
         lastname: value.lastname,
@@ -14,7 +16,8 @@ export function RegisterPage({ open, onClose, children }) {
         password: value.password
       }
 
-      AuthRegister(data)
+      await AuthRegister(data)
+      navigate("/tasks")
     })
   
   return (

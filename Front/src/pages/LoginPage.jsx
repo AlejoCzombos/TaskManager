@@ -1,15 +1,17 @@
 import {useForm} from 'react-hook-form'
+import {useNavigate} from 'react-router-dom'
 import {AuthLogin} from '../api/auth.api'
 
-export function LoginPage() {
+export function LoginPage({ open, onClose, children }) {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
 
-    const onSubmit = handleSubmit((value) => {
-      console.log(value)
+    const navigate = useNavigate();
 
-      const token = AuthLogin(value)
-      console.log(value)
+    const onSubmit = handleSubmit( async (value) => {
+      
+      await AuthLogin(value)
+      navigate("/tasks")
     })
 
   return (
