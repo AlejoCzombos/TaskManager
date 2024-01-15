@@ -1,40 +1,46 @@
 import {useForm} from 'react-hook-form'
 import {useNavigate} from 'react-router-dom'
 import {AuthLogin} from '../api/auth.api'
+import { useContext } from 'react';
+import {LoginContext} from '../Context/login'
 
-export function LoginPage({ open, onClose, children }) {
+export function LoginPage() {
 
+    const {setIsLogin, isOpenLogin, setIsOpenLogin} = useContext(LoginContext)
     const {register, handleSubmit, formState: {errors}} = useForm();
-
     const navigate = useNavigate();
 
+    const onClose = () => {
+      setIsOpenLogin(false)
+    }
+
     const onSubmit = handleSubmit( async (value) => {
-      
       await AuthLogin(value)
       navigate("/tasks")
     })
 
   return (
     <div
-  onClick={onClose}
-  className={`fixed inset-0 flex justify-center items-center
-    transition-colors ${open ? "visible bg-black/20" : "invisible"}
-  `}
-  >
+      onClick={onClose}
+      className={`fixed inset-0 flex justify-center items-center
+        transition-colors ${isOpenLogin ? "visible bg-black/20" : "invisible"}
+      `}
+    >
     <div
-    onClick={(e) => e.stopPropagation()} 
-    className={`bg-zinc-700 rounded-xl shadow p-5 transition-all
-    ${open ? "scale-100 opacity-100" : "scale-125 opacity-0"}
-    `}>
+      onClick={(e) => e.stopPropagation()} 
+      className={`bg-zinc-700 rounded-xl shadow p-5 transition-all
+      ${isOpenLogin ? "scale-100 opacity-100" : "scale-125 opacity-0"}`}
+    >
       
       <PlusIcon
-      onClick={onClose}
-      className="
-      fill-zinc-500
-        flex justify-center
-        rounded-full
-        transition hover:scale-125
-        size-9 p-1.5 rotate-45"/>
+        onClick={onClose}
+        className="
+        fill-zinc-500
+          flex justify-center
+          rounded-full
+          transition hover:scale-125
+          size-9 p-1.5 rotate-45"
+      />
 
       <h1 className='text-center text-white text-2xl'>Iniciar Sesión</h1>
 
@@ -44,10 +50,10 @@ export function LoginPage({ open, onClose, children }) {
       >
     
           <div className="mb-5">
-          <label htmlFor="username" className="block mb-2 text-sm font-medium text-white">Correo electrónico:</label>
+          <label htmlFor="usernameLogin" className="block mb-2 text-sm font-medium text-white">Correo electrónico:</label>
           <input 
           type="username" 
-          id="username" 
+          id="usernameLogin" 
           className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="ejemplo@gmail.com" 
           {...register("username", {
               required: "El email es requerido",
@@ -69,10 +75,10 @@ export function LoginPage({ open, onClose, children }) {
           </div>
 
           <div className="mb-5">
-          <label htmlFor="password" className="block mb-2 text-sm font-medium text-white">Contraseña:</label>
+          <label htmlFor="passwordLogin" className="block mb-2 text-sm font-medium text-white">Contraseña:</label>
           <input 
           type="password" 
-          id="password" 
+          id="passwordLogin" 
           className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="********" 
           {...register("password", {
               required: "La contraseña es requerida",

@@ -92,10 +92,10 @@ export function RegisterPage({ open, onClose, children }) {
           </div>
     
           <div className="mb-5">
-          <label htmlFor="username" className="block mb-2 text-sm font-medium text-white">Correo electrónico:</label>
+          <label htmlFor="usernameRegister" className="block mb-2 text-sm font-medium text-white">Correo electrónico:</label>
           <input 
           type="username" 
-          id="username" 
+          id="usernameRegister" 
           className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="ejemplo@gmail.com" 
           {...register("username", {
               required: "El email es requerido",
@@ -117,10 +117,10 @@ export function RegisterPage({ open, onClose, children }) {
           </div>
 
           <div className="mb-5">
-          <label htmlFor="password" className="block mb-2 text-sm font-medium text-white">Contraseña:</label>
+          <label htmlFor="passwordRegister" className="block mb-2 text-sm font-medium text-white">Contraseña:</label>
           <input 
           type="password" 
-          id="password" 
+          id="passwordRegister" 
           className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="********" 
           {...register("password", {
             required: "La contraseña es requerida",
@@ -134,10 +134,10 @@ export function RegisterPage({ open, onClose, children }) {
           </div>
 
           <div className="mb-5">
-          <label htmlFor="password2" className="block mb-2 text-sm font-medium text-white">Confirmar contraseña:</label>
+          <label htmlFor="passwordRegister2" className="block mb-2 text-sm font-medium text-white">Confirmar contraseña:</label>
           <input 
           type="password" 
-          id="password2" 
+          id="passwordRegister2" 
           className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="********" 
           {...register("password2", {
             required: "Confirmar contraseña es requerido",
