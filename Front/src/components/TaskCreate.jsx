@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom'
 
 export function TaskCreate() {
   return (
-    <Link to="/tasks-create" class="border-2 border-dashed border-zinc-700 rounded-xl 
+    <Link to="/tasks-create" className="border-2 border-dashed border-zinc-700 rounded-xl 
       bg-zinc-900 hover:bg-zinc-800
       h-48 w-50
       text-white
