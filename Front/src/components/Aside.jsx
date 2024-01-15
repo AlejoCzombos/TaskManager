@@ -1,8 +1,13 @@
 import {Navbar} from './Navbar'
 import {SideMenuItem} from './SideMenuItem'
 import {Profile} from './Profile'
+import {LoginContext} from '../Context/login'
+import { useContext } from 'react'
 
 export function Aside() {
+
+  const {isLogin, setIsLogin, isOpenLogin, setIsOpenLogin} = useContext(LoginContext)
+  
   return (
     <div className="flex flex-col justify-between h-full">
         
@@ -11,8 +16,9 @@ export function Aside() {
         <Navbar/>
         
         <SideMenuItem
-        text="Iniciar Sesion"
-        to="/register">
+          text="Iniciar Sesión"
+          onClick={() => {setIsOpenLogin(!isOpenLogin); console.log(isOpenLogin)} }
+        >
             <OutIcon className="size-8"/>
         </SideMenuItem>
     </div>
