@@ -14,6 +14,12 @@ export const SaveUser = (token) => {
         )
 }
 
+export const IsLogin = () => {
+    const TaskManagerUser = window.localStorage.getItem('TaskManagerUser')
+    const user = JSON.parse(TaskManagerUser)
+    return user ? true : false
+}
+
 export const GetUser = () => {
     const TaskManagerUser = window.localStorage.getItem('TaskManagerUser')
     const user = JSON.parse(TaskManagerUser)
