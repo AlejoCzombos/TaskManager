@@ -1,13 +1,25 @@
+import { useContext } from 'react'
+import {LoginContext} from '../Context/login'
+import {DeleteUser} from '../service/loginService'
+
+import {toast} from 'react-hot-toast'
 import {Navbar} from './Navbar'
 import {SideMenuItem} from './SideMenuItem'
 import {Profile} from './Profile'
-import {LoginContext} from '../Context/login'
-import { useContext } from 'react'
 
 export function Aside() {
 
   const {isLogin, setIsLogin, isOpenLogin, setIsOpenLogin} = useContext(LoginContext)
   
+  const handleClickLogin = () => {
+    setIsOpenLogin(isLogin ? false : true)
+    if (isLogin) {
+      DeleteUser()
+      setIsLogin(false)
+      toast.success("Sesión Cerrada correctamente")
+    }
+  }
+
   return (
     <div className="flex flex-col justify-between h-full">
         
@@ -16,8 +28,8 @@ export function Aside() {
         <Navbar/>
         
         <SideMenuItem
-          text="Iniciar Sesión"
-          onClick={() => {setIsOpenLogin(!isOpenLogin); console.log(isOpenLogin)} }
+          text={ isLogin ? "Cerrar Sesión" : "Iniciar Sesión"}
+          onClick={handleClickLogin}
         >
             <OutIcon className="size-8"/>
         </SideMenuItem>
