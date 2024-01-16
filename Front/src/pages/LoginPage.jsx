@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import {AuthLogin} from '../api/auth.api'
 import { useContext } from 'react';
 import {LoginContext} from '../Context/login'
+import toast from 'react-hot-toast';
 
 export function LoginPage() {
 
@@ -15,7 +16,9 @@ export function LoginPage() {
     }
 
     const onSubmit = handleSubmit( async (value) => {
-      await AuthLogin(value)
+      await AuthLogin(value, setIsLogin)
+      toast.success("Sesión iniciada correctamente")
+      setIsOpenLogin(false)
       navigate("/tasks")
     })
 
@@ -23,12 +26,12 @@ export function LoginPage() {
     <div
       onClick={onClose}
       className={`fixed inset-0 flex justify-center items-center
-        transition-colors ${isOpenLogin ? "visible bg-black/20" : "invisible"}
+        transition-colors ${isOpenLogin ? "visible bg-black/50" : "invisible"}
       `}
     >
     <div
       onClick={(e) => e.stopPropagation()} 
-      className={`bg-zinc-700 rounded-xl shadow p-5 transition-all
+      className={`bg-zinc-800 rounded-xl shadow p-5 transition-all
       ${isOpenLogin ? "scale-100 opacity-100" : "scale-125 opacity-0"}`}
     >
       
@@ -36,13 +39,13 @@ export function LoginPage() {
         onClick={onClose}
         className="
         fill-zinc-500
-          flex justify-center
+          flex justify-end
           rounded-full
           transition hover:scale-125
-          size-9 p-1.5 rotate-45"
+          size-6 rotate-45"
       />
 
-      <h1 className='text-center text-white text-2xl'>Iniciar Sesión</h1>
+      <h1 className='text-center text-white font-bold text-3xl mb-4'>Iniciar Sesión</h1>
 
       <form 
       className='max-w-md w-screen mx-auto'
@@ -54,7 +57,7 @@ export function LoginPage() {
           <input 
           type="username" 
           id="usernameLogin" 
-          className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="ejemplo@gmail.com" 
+          className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90" placeholder="ejemplo@gmail.com" 
           {...register("username", {
               required: "El email es requerido",
               pattern: {
@@ -79,7 +82,7 @@ export function LoginPage() {
           <input 
           type="password" 
           id="passwordLogin" 
-          className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="********" 
+          className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90" placeholder="********" 
           {...register("password", {
               required: "La contraseña es requerida",
               maxLength: {
@@ -90,8 +93,9 @@ export function LoginPage() {
           />
           { errors.password && <span className='text-sm text-red-400'>{errors.password.message}</span> }
           </div>
+          <p class="text-white mb-3 text-center">¿No tienes una cuenta? <a href="#" className='text-green-400/90 hover:text-white'>Regístrate aquí</a></p>
 
-          <button className=' bg-zinc-600 p-2 rounded-xl'>Iniciar sesión</button>
+          <button className='w-full bg-green-500/90 text-white font-semibold hover:bg-green-400/90 p-2 px-3.5 rounded-xl'>Iniciar sesión</button>
 
       </form>
 

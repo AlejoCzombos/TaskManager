@@ -24,7 +24,7 @@ export function RegisterPage({ open, onClose, children }) {
   <div
   onClick={onClose}
   className={`fixed inset-0 flex justify-center items-center
-    transition-colors ${open ? "visible bg-black/20" : "invisible"}
+    transition-colors ${open ? "visible bg-black/50" : "invisible"}
   `}
   >
     <div
@@ -54,7 +54,7 @@ export function RegisterPage({ open, onClose, children }) {
           <input 
           type="firstname" 
           id="firstname" 
-          className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Alejo" 
+          className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90" placeholder="Alejo" 
           {...register("firstname", {
               required: "El nombre es requerido",
               maxLength: {
@@ -75,7 +75,7 @@ export function RegisterPage({ open, onClose, children }) {
           <input 
           type="lastname" 
           id="lastname" 
-          className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Czombos" 
+          className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90" placeholder="Czombos" 
           {...register("lastname", {
               required: "El apellido es requerido",
               maxLength: {
@@ -96,7 +96,7 @@ export function RegisterPage({ open, onClose, children }) {
           <input 
           type="username" 
           id="usernameRegister" 
-          className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="ejemplo@gmail.com" 
+          className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90" placeholder="ejemplo@gmail.com" 
           {...register("username", {
               required: "El email es requerido",
               pattern: {
@@ -121,7 +121,7 @@ export function RegisterPage({ open, onClose, children }) {
           <input 
           type="password" 
           id="passwordRegister" 
-          className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="********" 
+          className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90" placeholder="********" 
           {...register("password", {
             required: "La contraseña es requerida",
             maxLength: {
@@ -138,7 +138,7 @@ export function RegisterPage({ open, onClose, children }) {
           <input 
           type="password" 
           id="passwordRegister2" 
-          className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="********" 
+          className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90" placeholder="********" 
           {...register("password2", {
             required: "Confirmar contraseña es requerido",
             maxLength: {
