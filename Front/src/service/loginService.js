@@ -14,7 +14,11 @@ export const SaveUser = (token) => {
         )
 }
 
-export const IsLogin = () => {
+export const DeleteUser = () => {
+    window.localStorage.removeItem('TaskManagerUser')
+}
+
+export const CheckIsLogin = () => {
     const TaskManagerUser = window.localStorage.getItem('TaskManagerUser')
     const user = JSON.parse(TaskManagerUser)
     return user ? true : false
