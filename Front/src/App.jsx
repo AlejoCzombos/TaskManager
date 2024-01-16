@@ -8,6 +8,7 @@ import {TasksFormPage} from './pages/TasksFormPage'
 import {LoginPage} from './pages/LoginPage'
 import {RegisterPage} from './pages/RegisterPage'
 import {Aside} from './components/Aside'
+import {Navigation} from './components/Navigation'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <Aside/>
           </aside>
           <main className="[grid-area:main] bg-zinc-900 rounded-xl border-2 border-zinc-800">
+            <Navigation/>
             <Routes>
               <Route path="/" element={<Navigate to="/tasks"/>}/>
               <Route path="/tasks" element={<TasksPage/>} />
