@@ -1,7 +1,7 @@
 package com.example.TaskManager.Controller;
 
 import com.example.TaskManager.Entity.Task;
-import com.example.TaskManager.Service.TaskServiceImpl;
+import com.example.TaskManager.Service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/tasks")
 public class TaskController {
 
-    private final TaskServiceImpl service;
+    private final TaskService service;
 
     @GetMapping("/{taskId}")
     public ResponseEntity<Task> getById(@PathVariable Long taskId){
@@ -31,8 +31,8 @@ public class TaskController {
     }
 
     @PutMapping
-    public ResponseEntity<Task> update(@RequestBody Task task){
-        return service.update(task);
+    public ResponseEntity<Task> update(@RequestBody Task task, @RequestParam("userId") Long userId){
+        return service.update(task, userId);
     }
 
     @DeleteMapping("/{taskId}")

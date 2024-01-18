@@ -13,7 +13,7 @@ public interface TaskService {
 
     ResponseEntity<Task> create(Task task, Long userId);
 
-    ResponseEntity<Task> update(Task task);
+    ResponseEntity<Task> update(Task task, Long userId);
 
     ResponseEntity<Task> deleteById(Long taskId);
 

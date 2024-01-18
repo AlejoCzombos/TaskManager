@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.SubmissionPublisher;
 
 @RequiredArgsConstructor
 @Service
@@ -67,7 +66,14 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public ResponseEntity<Task> update(Task task) {
+    public ResponseEntity<Task> update(Task task, Long userId) {
+
+        Optional<User> optionalUser = userRepository.findById(userId);
+
+        if (optionalUser.isEmpty()){
+            log.warn("Trying to create a task with non-existent userId");
+            return ResponseEntity.notFound().build();
+        }
 
         if (task.getId() == null){
             log.warn("Trying to update a task without id");
@@ -79,6 +85,8 @@ public class TaskServiceImpl implements TaskService {
             return ResponseEntity.notFound().build();
         }
 
+        User user = optionalUser.get();
+        task.setUser(user);
         Task result = repository.save(task);
 
         return ResponseEntity.ok(result);
