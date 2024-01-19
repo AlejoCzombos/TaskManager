@@ -21,11 +21,26 @@ public class TaskController {
     }
 
     @GetMapping
-    public List<Task> getAll(){
-        return service.findAll();
+    public List<Task> getAllByUserId(@RequestParam("userId") Long userId){
+        return service.findByUserId(userId);
     }
 
-    @PostMapping()
+    @GetMapping("/finished")
+    public List<Task> getAllByFinished(@RequestParam("userId") Long userId){
+        return service.findByFinished();
+    }
+
+    @GetMapping("/unfinished")
+    public List<Task> getAllByUnfinished(@RequestParam("userId") Long userId){
+        return service.findByUnfinished();
+    }
+
+    @GetMapping("/important")
+    public List<Task> getAllByImportant(@RequestParam("userId") Long userId){
+        return service.findByImportant();
+    }
+
+    @PostMapping
     public ResponseEntity<Task> create(@RequestBody Task task, @RequestParam("userId") Long userId){
         return service.create(task, userId);
     }
@@ -35,14 +50,14 @@ public class TaskController {
         return service.update(task, userId);
     }
 
+    @PutMapping("/{taskId}")
+    public ResponseEntity<Task> updateCompleted(@PathVariable Long taskId){
+        return service.updateCompleted(taskId);
+    }
+
     @DeleteMapping("/{taskId}")
     public ResponseEntity<Task> deleteById(@PathVariable Long taskId){
         return service.deleteById(taskId);
-    }
-
-    @DeleteMapping
-    public ResponseEntity<Task> deleteAll(){
-        return service.deleteAll();
     }
 
 }
