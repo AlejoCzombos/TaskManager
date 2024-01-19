@@ -1,18 +1,72 @@
 import axios from "axios";
 import { GetToken, GetUserId } from "../service/loginService";
 
-const taskApi = axios.create({
-  baseURL: "http//localhost:8081/api/tasks",
-  headers: { Authorization: `bearer ${GetToken()}` },
-});
+const BASEURL = "http://localhost:8081/api/tasks";
 
-export const getAllTask = (userId) => taskApi.get(`/${userId}`);
+export const getAllTasks = () => {
+  const url = `${BASEURL}?userId=${GetUserId()}`;
+  return fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${GetToken()}`,
+    },
+  });
+};
 
-export const getTaskById = (taskId) => taskApi.get(`/${taskId}`);
+export const getTaskById = (taskId) => {
+  const url = `${BASEURL}/${taskId}`;
+  return fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${GetToken()}`,
+    },
+  });
+};
 
-export const createTask = (task) =>
-  taskApi.post(`?userId=${GetUserId()}`, task);
+export const createTask = (task) => {
+  const url = `${BASEURL}?userId=${GetUserId()}`;
+  return fetch(url, {
+    method: "POST",
+    body: JSON.stringify(task),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${GetToken()}`,
+    },
+  });
+};
 
-export const updateTask = (task) => taskApi.put(`?userId=${GetUserId()}`, task);
+export const updateTask = (task) => {
+  const url = `${BASEURL}?userId=${GetUserId()}`;
+  return fetch(url, {
+    method: "PUT",
+    body: JSON.stringify(task),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${GetToken()}`,
+    },
+  });
+};
 
-export const deleteTask = (taskId) => taskApi.delete(`/${taskId}`);
+export const updateTaskCompleted = (taskId) => {
+  const url = `${BASEURL}/${taskId}`;
+  return fetch(url, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${GetToken()}`,
+    },
+  });
+};
+
+export const deleteTask = (taskId) => {
+  const url = `${BASEURL}/${taskId}`;
+  return fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${GetToken()}`,
+    },
+  });
+};
