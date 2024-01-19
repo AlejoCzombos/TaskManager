@@ -38,8 +38,23 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> findAll() {
-        return repository.findAll();
+    public List<Task> findByUserId(Long userId) {
+        return repository.findAllByUserIdOrderByCreationDateDesc(userId);
+    }
+
+    @Override
+    public List<Task> findByImportant() {
+        return repository.findAllByImportantTrue();
+    }
+
+    @Override
+    public List<Task> findByFinished() {
+        return repository.findAllByFinishedTrue();
+    }
+
+    @Override
+    public List<Task> findByUnfinished() {
+        return repository.findAllByFinishedFalse();
     }
 
     @Override
@@ -93,6 +108,17 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public ResponseEntity<Task> updateCompleted(Long taskId) {
+        Task task = repository.findById(taskId).orElseThrow();
+
+        task.setFinished(!task.getFinished());
+
+        Task result = repository.save(task);
+
+        return ResponseEntity.ok(result);
+    }
+
+    @Override
     public ResponseEntity<Task> deleteById(Long taskId) {
 
         Optional<Task> optionalTask = repository.findById(taskId);
@@ -104,12 +130,6 @@ public class TaskServiceImpl implements TaskService {
 
         repository.deleteById(taskId);
 
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    }
-
-    @Override
-    public ResponseEntity<Task> deleteAll() {
-        repository.deleteAll();
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
