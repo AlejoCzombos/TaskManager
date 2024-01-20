@@ -1,10 +1,37 @@
-import { Link } from "react-router-dom";
-import {} from "../api/task.api";
+import { Link, useNavigate } from "react-router-dom";
+import { updateTaskCompleted, deleteTask } from "../api/task.api";
+import { format } from "date-fns";
+import toast from "react-hot-toast";
 
 export function TaskCard({ task }) {
   const finishedStyle = task.finished ? " bg-green-500/90" : " bg-red-500/90";
 
-  const changeStatusTask = () => {};
+  const navigate = useNavigate();
+
+  const HandleUpdateTaskCompleted = async (taskId) => {
+    const res = await updateTaskCompleted(taskId);
+    toast.promise(res.json(), {
+      loading: "Actualizando...",
+      success: <b>Tarea actualizada!</b>,
+      error: <b>Error al actualizar la tarea 😓</b>,
+    });
+    navigate("/");
+  };
+
+  const HandleDeleteTask = async (taskId) => {
+    const res = await deleteTask(taskId);
+    toast.promise(res.json(), {
+      loading: "Eliminando...",
+      success: <b>Tarea eliminada!</b>,
+      error: <b>Error al eliminar la tarea 😓</b>,
+    });
+    navigate("/");
+  };
+
+  function formatDate(inputDate) {
+    const parsedDate = new Date(inputDate);
+    return format(parsedDate, "dd/MM/yyyy");
+  }
 
   return (
     <div
@@ -21,14 +48,16 @@ export function TaskCard({ task }) {
 
       <div className="flex flex-row justify-between">
         <div className="">
-          <p className="text-sm font-normal mb-2">{task.creation_date}</p>
+          <p className="text-sm font-normal mb-2">
+            {formatDate(task.creationDate)}
+          </p>
           <Link
             onClick={() => {
-              changeStatusTask();
+              HandleUpdateTaskCompleted(task.id);
             }}
             className={`text-sm rounded-full p-1 px-2 ${finishedStyle}`}
           >
-            {task.finished}
+            {task.finished ? "Completado" : "En Proceso"}
           </Link>
         </div>
 
@@ -36,7 +65,11 @@ export function TaskCard({ task }) {
           <Link to={`/tasks/${task.id}`}>
             <PenIcon className="size-5 fill-zinc-500 hover:fill-white transition hover:scale-125" />
           </Link>
-          <Link>
+          <Link
+            onClick={() => {
+              HandleDeleteTask(task.id);
+            }}
+          >
             <TrashIcon className="size-5 fill-zinc-500 hover:fill-red-500 transition hover:scale-125" />
           </Link>
         </div>
