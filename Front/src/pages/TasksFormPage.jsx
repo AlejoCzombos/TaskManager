@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
+import { useLogin } from "../Context/login";
 import {
   createTask,
   updateTask,
@@ -17,27 +18,42 @@ export function TasksFormPage() {
     reset,
   } = useForm();
 
+  const { isLogin } = useLogin();
   const params = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
     async function getTask() {
       if (params.id) {
-        const { data } = await getTaskById(params.id);
-        console.log(data);
+        const res = await getTaskById(params.id);
+        const data = await res.json();
         reset(data);
       }
     }
+    getTask();
   }, []);
 
   const onSubmit = handleSubmit(async (value) => {
+    if (!isLogin) {
+      toast.error("Inicie sesión para crear una tarea");
+      return;
+    }
+
     if (params.id) {
-      await updateTask(value);
-      toast.success("Tarea actualizada");
+      const res = await updateTask(value);
+      toast.promise(res.json(), {
+        loading: "Actualizando...",
+        success: <b>Tarea actualizada!</b>,
+        error: <b>Error al actualizar la tarea 😓</b>,
+      });
       navigate("/tasks");
     } else {
-      await createTask(value);
-      toast.success("Tarea creada");
+      const res = await createTask(value);
+      toast.promise(res.json(), {
+        loading: "Creando...",
+        success: <b>Tarea creada!</b>,
+        error: <b>Error al crear la tarea 😓</b>,
+      });
       navigate("/tasks");
     }
   });
