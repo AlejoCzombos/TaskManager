@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthLogin } from "../api/auth.api";
 import { useContext } from "react";
 import { LoginContext } from "../Context/login";
+import { SaveUser } from "../service/loginService";
 import toast from "react-hot-toast";
 
 export function LoginPage() {
@@ -20,10 +21,20 @@ export function LoginPage() {
   };
 
   const onSubmit = handleSubmit(async (value) => {
-    await AuthLogin(value, setIsLogin);
-    toast.success("Sesión iniciada correctamente");
-    setIsOpenLogin(false);
-    navigate("/tasks");
+    const res = await AuthLogin(value);
+    const data = await res.json();
+
+    toast.promise(Promise.resolve(data), {
+      loading: "Cargando...",
+      success: <b>Sesión iniciada!</b>,
+      error: <b>Error al iniciar sesión 😓</b>,
+    });
+
+    if (data && data.token) {
+      setIsLogin(true);
+      SaveUser(data.token);
+      setIsOpenLogin(false);
+    }
   });
 
   return (
