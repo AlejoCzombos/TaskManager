@@ -1,4 +1,3 @@
-import axios from "axios";
 import { GetToken, GetUserId } from "../service/loginService";
 
 const BASEURL = "http://localhost:8081/api/tasks";
