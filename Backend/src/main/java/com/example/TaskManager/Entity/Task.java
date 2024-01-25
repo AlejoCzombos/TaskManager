@@ -40,7 +40,7 @@ public class Task {
     private Date creationDate;
 
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id", updatable = false)
     private User user;
 
