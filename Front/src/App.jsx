@@ -24,10 +24,10 @@ function App() {
           <main className="[grid-area:main] bg-zinc-900 rounded-xl border-2 border-zinc-800 overflow-y-auto">
             <Navigation />
             <Routes>
-              <Route path="/" element={<Navigate to="/tasks" />} />
-              <Route path="/tasks" element={<TasksPage />} />
+              <Route path="/" element={<Navigate to="/tasks/all" />} />
+              <Route path="/tasks/:filter" element={<TasksPage />} />
               <Route path="/tasks-create" element={<TasksFormPage />} />
-              <Route path="/tasks/:id" element={<TasksFormPage />} />
+              <Route path="/tasks-edit/:id" element={<TasksFormPage />} />
             </Routes>
           </main>
           <LoginPage />
