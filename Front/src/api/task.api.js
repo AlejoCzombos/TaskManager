@@ -13,6 +13,39 @@ export const getAllTasks = () => {
   });
 };
 
+export const getCompletedTasks = () => {
+  const url = `${BASEURL}/finished?userId=${GetUserId()}`;
+  return fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${GetToken()}`,
+    },
+  });
+};
+
+export const getIncompletedTasks = () => {
+  const url = `${BASEURL}/unfinished?userId=${GetUserId()}`;
+  return fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${GetToken()}`,
+    },
+  });
+};
+
+export const getImportantTasks = () => {
+  const url = `${BASEURL}/important?userId=${GetUserId()}`;
+  return fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${GetToken()}`,
+    },
+  });
+};
+
 export const getTaskById = (taskId) => {
   const url = `${BASEURL}/${taskId}`;
   return fetch(url, {
