@@ -4,7 +4,9 @@ import { format } from "date-fns";
 import toast from "react-hot-toast";
 
 export function TaskCard({ task }) {
-  const finishedStyle = task.finished ? " bg-green-500/90" : " bg-red-500/90";
+  const finishedStyle = task.finished
+    ? " bg-green-500/90 hover:bg-green-400/90"
+    : " bg-red-500/90 hover:bg-red-400/90";
 
   const navigate = useNavigate();
 
@@ -20,7 +22,9 @@ export function TaskCard({ task }) {
 
   const HandleDeleteTask = async (taskId) => {
     const res = await deleteTask(taskId);
-    toast.promise(res.json(), {
+    const data = await res.json();
+
+    toast.promise(Promise.resolve(data), {
       loading: "Eliminando...",
       success: <b>Tarea eliminada!</b>,
       error: <b>Error al eliminar la tarea 😓</b>,
@@ -62,7 +66,7 @@ export function TaskCard({ task }) {
         </div>
 
         <div className="flex flex-row items-end mb-1 gap-2.5">
-          <Link to={`/tasks/${task.id}`}>
+          <Link to={`/tasks-edit/${task.id}`}>
             <PenIcon className="size-5 fill-zinc-500 hover:fill-white transition hover:scale-125" />
           </Link>
           <Link
