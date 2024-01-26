@@ -5,8 +5,10 @@ import toast from "react-hot-toast";
 
 export function TaskCard({ task }) {
   const finishedStyle = task.finished
-    ? " bg-green-500/90 hover:bg-green-400/90"
-    : " bg-red-500/90 hover:bg-red-400/90";
+    ? "bg-green-500/90 hover:bg-green-400/90"
+    : "bg-red-500/90 hover:bg-red-400/90";
+
+  const importantStyle = task.important ? "text-red-500/70" : "text-white";
 
   const navigate = useNavigate();
 
@@ -39,14 +41,16 @@ export function TaskCard({ task }) {
 
   return (
     <div
-      className="border-2 border-zinc-600 rounded-xl 
+      className="border-2 rounded-xl border-zinc-600
       bg-zinc-700
       h-48 w-50 p-4
       text-white
       flex flex-col justify-between"
     >
       <div>
-        <h2 className="text-lg mb-1.5 font-bold">{task.title}</h2>
+        <h2 className={`text-xl ${importantStyle} mb-1.5 font-bold`}>
+          {task.title}
+        </h2>
         <p className="text-sm font-light">{task.description}</p>
       </div>
 
