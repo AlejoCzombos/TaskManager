@@ -46,7 +46,7 @@ export function TasksFormPage() {
         success: <b>Tarea actualizada!</b>,
         error: <b>Error al actualizar la tarea 😓</b>,
       });
-      navigate("/tasks");
+      navigate("/");
     } else {
       const res = await createTask(value);
       toast.promise(res.json(), {
@@ -54,7 +54,7 @@ export function TasksFormPage() {
         success: <b>Tarea creada!</b>,
         error: <b>Error al crear la tarea 😓</b>,
       });
-      navigate("/tasks");
+      navigate("/");
     }
   });
 
