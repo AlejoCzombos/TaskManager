@@ -35,6 +35,7 @@ export function LoginPage() {
       SaveUser(data.token);
       setIsOpenLogin(false);
     }
+    navigate("/");
   });
 
   return (
