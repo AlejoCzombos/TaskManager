@@ -1,16 +1,21 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { AuthRegister } from "../api/auth.api";
+import { useLogin } from "../Context/login";
 
-export function RegisterPage({ open, onClose, children }) {
+export function RegisterPage({ children }) {
+  const { setIsLogin, isOpenRegister, setIsOpenRegister, setIsOpenLogin } =
+    useLogin();
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm();
-
   const navigate = useNavigate();
+
+  const onClose = () => {
+    setIsOpenRegister(false);
+  };
 
   const onSubmit = handleSubmit(async (value) => {
     const data = {
@@ -28,31 +33,34 @@ export function RegisterPage({ open, onClose, children }) {
     <div
       onClick={onClose}
       className={`fixed inset-0 flex justify-center items-center
-    transition-colors ${open ? "visible bg-black/50" : "invisible"}
+    transition-colors ${isOpenRegister ? "visible bg-black/50" : "invisible"}
   `}
     >
       <div
         onClick={(e) => e.stopPropagation()}
         className={`bg-zinc-700 rounded-xl shadow p-5 transition-all
-    ${open ? "scale-100 opacity-100" : "scale-125 opacity-0"}
+    ${isOpenRegister ? "scale-100 opacity-100" : "scale-125 opacity-0"}
     `}
       >
         <PlusIcon
           onClick={onClose}
           className="
-      fill-zinc-500
-        flex justify-center
-        rounded-full
-        transition hover:scale-125
-        size-9 p-1.5 rotate-45"
+          absolute top-3 right-3
+        fill-zinc-500
+          flex justify-end
+          rounded-full
+          transition hover:scale-125
+          size-6 rotate-45
+          cursor-pointer
+          "
         />
 
-        <h1 className="text-center text-white text-2xl mb-2 font-bold">
+        <h1 className="text-center text-white font-bold text-3xl mb-4 mt-2">
           Registrarse
         </h1>
 
         <form className="max-w-md w-screen mx-auto" onSubmit={onSubmit}>
-          <div className="mb-5">
+          <div className="mb-3">
             <label
               htmlFor="firstname"
               className="block mb-2 text-sm font-medium text-white"
@@ -60,15 +68,16 @@ export function RegisterPage({ open, onClose, children }) {
               Nombre:
             </label>
             <input
+              autoFocus={isOpenRegister ? true : false}
               type="firstname"
               id="firstname"
-              className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90"
+              className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-600 border-zinc-500 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
               placeholder="Alejo"
               {...register("firstname", {
                 required: "El nombre es requerido",
                 maxLength: {
                   value: 15,
-                  message: "El nombre puede tener un maximo de 15 caracteres",
+                  message: "El nombre puede tener un máximo de 15 caracteres",
                 },
                 minLength: {
                   value: 3,
@@ -83,7 +92,7 @@ export function RegisterPage({ open, onClose, children }) {
             )}
           </div>
 
-          <div className="mb-5">
+          <div className="mb-3">
             <label
               htmlFor="lastname"
               className="block mb-2 text-sm font-medium text-white"
@@ -93,13 +102,13 @@ export function RegisterPage({ open, onClose, children }) {
             <input
               type="lastname"
               id="lastname"
-              className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90"
+              className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-600 border-zinc-500 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
               placeholder="Czombos"
               {...register("lastname", {
                 required: "El apellido es requerido",
                 maxLength: {
                   value: 15,
-                  message: "El apellido puede tener un maximo de 15 caracteres",
+                  message: "El apellido puede tener un máximo de 15 caracteres",
                 },
                 minLength: {
                   value: 3,
@@ -114,7 +123,7 @@ export function RegisterPage({ open, onClose, children }) {
             )}
           </div>
 
-          <div className="mb-5">
+          <div className="mb-3">
             <label
               htmlFor="usernameRegister"
               className="block mb-2 text-sm font-medium text-white"
@@ -124,7 +133,7 @@ export function RegisterPage({ open, onClose, children }) {
             <input
               type="username"
               id="usernameRegister"
-              className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90"
+              className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-600 border-zinc-500 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
               placeholder="ejemplo@gmail.com"
               {...register("username", {
                 required: "El email es requerido",
@@ -134,7 +143,7 @@ export function RegisterPage({ open, onClose, children }) {
                 },
                 maxLength: {
                   value: 50,
-                  message: "El email puede tener un maximo de 50 caracteres",
+                  message: "El email puede tener un máximo de 50 caracteres",
                 },
                 minLength: {
                   value: 5,
@@ -149,7 +158,7 @@ export function RegisterPage({ open, onClose, children }) {
             )}
           </div>
 
-          <div className="mb-5">
+          <div className="mb-3">
             <label
               htmlFor="passwordRegister"
               className="block mb-2 text-sm font-medium text-white"
@@ -159,14 +168,14 @@ export function RegisterPage({ open, onClose, children }) {
             <input
               type="password"
               id="passwordRegister"
-              className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90"
+              className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-600 border-zinc-500 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
               placeholder="********"
               {...register("password", {
                 required: "La contraseña es requerida",
                 maxLength: {
                   value: 255,
                   message:
-                    "La contraseña puede tener un maximo de 255 caracteres",
+                    "La contraseña puede tener un máximo de 255 caracteres",
                 },
               })}
             />
@@ -177,7 +186,7 @@ export function RegisterPage({ open, onClose, children }) {
             )}
           </div>
 
-          <div className="mb-5">
+          <div className="mb-4">
             <label
               htmlFor="passwordRegister2"
               className="block mb-2 text-sm font-medium text-white"
@@ -187,14 +196,14 @@ export function RegisterPage({ open, onClose, children }) {
             <input
               type="password"
               id="passwordRegister2"
-              className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90"
+              className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-600 border-zinc-500 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
               placeholder="********"
               {...register("password2", {
                 required: "Confirmar contraseña es requerido",
                 maxLength: {
                   value: 255,
                   message:
-                    "La contraseña puede tener un maximo de 255 caracteres",
+                    "La contraseña puede tener un máximo de 255 caracteres",
                 },
                 validate: (value) => {
                   if (value == watch("password")) {
@@ -210,8 +219,21 @@ export function RegisterPage({ open, onClose, children }) {
               </span>
             )}
           </div>
+          <p className="text-white mb-4 text-center">
+            ¿Ya tenes una cuenta?{" "}
+            <a
+              href="#"
+              className="text-green-400/90 hover:text-white"
+              onClick={() => {
+                setIsOpenRegister(false);
+                setIsOpenLogin(true);
+              }}
+            >
+              Inicia sesión aquí
+            </a>
+          </p>
 
-          <button className=" bg-zinc-600 p-2 block w-full rounded-xl">
+          <button className="w-full bg-green-500/90 text-white font-semibold hover:bg-green-400/90 p-2 px-3.5 rounded-xl">
             Registrarse
           </button>
         </form>

@@ -1,13 +1,13 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { AuthLogin } from "../api/auth.api";
-import { useContext } from "react";
-import { LoginContext } from "../Context/login";
+import { useLogin } from "../Context/login";
 import { SaveUser } from "../service/loginService";
 import toast from "react-hot-toast";
 
 export function LoginPage() {
-  const { setIsLogin, isOpenLogin, setIsOpenLogin } = useContext(LoginContext);
+  const { setIsLogin, isOpenLogin, setIsOpenLogin, setIsOpenRegister } =
+    useLogin();
   const {
     register,
     handleSubmit,
@@ -47,25 +47,28 @@ export function LoginPage() {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`bg-zinc-800 rounded-xl shadow p-5 transition-all
+        className={`bg-zinc-700 rounded-xl shadow p-5 transition-all
       ${isOpenLogin ? "scale-100 opacity-100" : "scale-125 opacity-0"}`}
       >
         <PlusIcon
           onClick={onClose}
           className="
+          absolute top-3 right-3
         fill-zinc-500
           flex justify-end
           rounded-full
           transition hover:scale-125
-          size-6 rotate-45"
+          size-6 rotate-45
+          cursor-pointer
+          "
         />
 
-        <h1 className="text-center text-white font-bold text-3xl mb-4">
+        <h1 className="text-center text-white font-bold text-3xl mb-4 mt-2">
           Iniciar Sesión
         </h1>
 
         <form className="max-w-md w-screen mx-auto" onSubmit={onSubmit}>
-          <div className="mb-5">
+          <div className="mb-3">
             <label
               htmlFor="usernameLogin"
               className="block mb-2 text-sm font-medium text-white"
@@ -73,9 +76,10 @@ export function LoginPage() {
               Correo electrónico:
             </label>
             <input
+              autoFocus={isOpenLogin ? true : false}
               type="username"
               id="usernameLogin"
-              className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90"
+              className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-600 border-zinc-500 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
               placeholder="ejemplo@gmail.com"
               {...register("username", {
                 required: "El email es requerido",
@@ -85,7 +89,7 @@ export function LoginPage() {
                 },
                 maxLength: {
                   value: 50,
-                  message: "El email puede tener un maximo de 50 caracteres",
+                  message: "El email puede tener un máximo de 50 caracteres",
                 },
                 minLength: {
                   value: 5,
@@ -100,7 +104,7 @@ export function LoginPage() {
             )}
           </div>
 
-          <div className="mb-5">
+          <div className="mb-4">
             <label
               htmlFor="passwordLogin"
               className="block mb-2 text-sm font-medium text-white"
@@ -110,14 +114,14 @@ export function LoginPage() {
             <input
               type="password"
               id="passwordLogin"
-              className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90"
+              className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-600 border-zinc-500 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
               placeholder="********"
               {...register("password", {
                 required: "La contraseña es requerida",
                 maxLength: {
                   value: 255,
                   message:
-                    "La contraseña puede tener un maximo de 255 caracteres",
+                    "La contraseña puede tener un máximo de 255 caracteres",
                 },
               })}
             />
@@ -127,9 +131,16 @@ export function LoginPage() {
               </span>
             )}
           </div>
-          <p className="text-white mb-3 text-center">
+          <p className="text-white mb-4 text-center">
             ¿No tienes una cuenta?{" "}
-            <a href="#" className="text-green-400/90 hover:text-white">
+            <a
+              href="#"
+              className="text-green-400/90 hover:text-white"
+              onClick={() => {
+                setIsOpenLogin(false);
+                setIsOpenRegister(true);
+              }}
+            >
               Regístrate aquí
             </a>
           </p>
