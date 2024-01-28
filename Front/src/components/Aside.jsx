@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { LoginContext } from "../Context/login";
+import { useLogin } from "../Context/login";
 import { DeleteUser } from "../service/loginService";
 
 import { toast } from "react-hot-toast";
@@ -9,7 +8,7 @@ import { Profile } from "./Profile";
 import { useNavigate } from "react-router-dom";
 
 export function Aside() {
-  const { isLogin, setIsLogin, setIsOpenLogin } = useContext(LoginContext);
+  const { isLogin, setIsLogin, setIsOpenLogin } = useLogin();
 
   const navigate = useNavigate();
 

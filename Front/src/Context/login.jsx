@@ -8,7 +8,10 @@ export function LoginProvider({ children }) {
     return CheckIsLogin();
   });
 
-  const [isOpenLogin, setIsOpenLogin] = useState(false);
+  const [isOpenLogin, setIsOpenLogin] = useState(() => {
+    return !isLogin;
+  });
+  const [isOpenRegister, setIsOpenRegister] = useState(false);
 
   return (
     <LoginContext.Provider
@@ -17,6 +20,8 @@ export function LoginProvider({ children }) {
         setIsLogin,
         isOpenLogin,
         setIsOpenLogin,
+        isOpenRegister,
+        setIsOpenRegister,
       }}
     >
       {children}
