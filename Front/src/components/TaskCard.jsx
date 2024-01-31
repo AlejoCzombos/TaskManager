@@ -8,8 +8,6 @@ export function TaskCard({ task }) {
     ? "bg-green-500/90 hover:bg-green-400/90"
     : "bg-red-500/90 hover:bg-red-400/90";
 
-  const importantStyle = task.important ? "text-red-500/70" : "text-white";
-
   const navigate = useNavigate();
 
   const HandleUpdateTaskCompleted = async (taskId) => {
@@ -45,10 +43,14 @@ export function TaskCard({ task }) {
       bg-zinc-700
       h-48 w-50 p-4
       text-white
-      flex flex-col justify-between"
+      flex flex-col justify-between
+      relative"
     >
+      {task.important && (
+        <ImportantIcon className="size-7 fill-white border-2 p-[4px] rounded-full absolute top-4 right-4" />
+      )}
       <div>
-        <h2 className={`text-xl ${importantStyle} mb-1 font-bold line-clamp-1`}>
+        <h2 className={`text-xl text-white mb-1 font-bold line-clamp-1`}>
           {task.title}
         </h2>
         <p className="text-sm font-light line-clamp-3">{task.description}</p>
@@ -56,9 +58,7 @@ export function TaskCard({ task }) {
 
       <div className="flex flex-row justify-between">
         <div className="">
-          <p className="text-sm font-normal mb-2">
-            {formatDate(task.creationDate)}
-          </p>
+          <p className="text-sm font-normal mb-2">{formatDate(task.date)}</p>
           <Link
             onClick={() => {
               HandleUpdateTaskCompleted(task.id);
@@ -110,6 +110,13 @@ function PenIcon(props) {
       viewBox="0 0 512 512"
     >
       <path d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z" />
+    </svg>
+  );
+}
+function ImportantIcon(props) {
+  return (
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 512">
+      <path d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V320c0 17.7 14.3 32 32 32s32-14.3 32-32V64zM32 480a40 40 0 1 0 0-80 40 40 0 1 0 0 80z" />
     </svg>
   );
 }
