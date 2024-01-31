@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32ca7843-8e77-4ab2-8732-65c06cea40af" name="Changes" comment="Commit Inicial" />
+    <list default="true" id="32ca7843-8e77-4ab2-8732-65c06cea40af" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/TaskManager/Entity/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/TaskManager/Entity/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/TaskManager/Repository/TaskRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/TaskManager/Repository/TaskRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/TaskManager/Security/Jwt/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/TaskManager/Security/Jwt/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/TaskManager/Service/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/TaskManager/Service/TaskServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/components/Navbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/components/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/components/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/components/TaskCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/components/TaskCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/pages/TasksFormPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/pages/TasksFormPage.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,19 +42,28 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
   <component name="ProjectId" id="2ZguABNPLgdEJlTPB2WtUbPiRoW" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Alejo/Programacion/TaskManager/Backend&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Alejo/Programacion/TaskManager",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.TaskManager.TaskManagerApplication" />
@@ -61,6 +81,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1702855900686</updated>
+      <workItem from="1706580575263" duration="100000" />
     </task>
     <task id="LOCAL-00001" summary="Commit Inicial">
       <created>1702860111461</created>
@@ -71,6 +92,9 @@
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

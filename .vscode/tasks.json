@@ -1,0 +1,13 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Go to Front and Run Dev",
+      "type": "shell",
+      "command": "cd .\\Front\\ ; npm run dev",
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    }
+  ]
+}
