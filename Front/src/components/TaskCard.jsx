@@ -11,13 +11,18 @@ export function TaskCard({ task }) {
   const navigate = useNavigate();
 
   const HandleUpdateTaskCompleted = async (taskId) => {
-    const res = await updateTaskCompleted(taskId);
-    toast.promise(res.json(), {
-      loading: "Actualizando...",
+    const res = updateTaskCompleted(taskId);
+    toast.promise(res, {
+      loading: "Actualizando estado...",
       success: <b>Tarea actualizada!</b>,
       error: <b>Error al actualizar la tarea 😓</b>,
     });
-    navigate("/");
+    try {
+      const data = await res;
+      navigate("/");
+    } catch (error) {
+      console.error("Error during update task:", error);
+    }
   };
 
   const HandleDeleteTask = async (taskId) => {
@@ -50,7 +55,9 @@ export function TaskCard({ task }) {
         <ImportantIcon className="size-7 fill-white border-2 p-[4px] rounded-full absolute top-4 right-4" />
       )}
       <div>
-        <h2 className={`text-xl text-white mb-1 font-bold line-clamp-1`}>
+        <h2
+          className={`text-xl text-white mb-1 font-bold line-clamp-1 max-w-[95%]`}
+        >
           {task.title}
         </h2>
         <p className="text-sm font-light line-clamp-3">{task.description}</p>

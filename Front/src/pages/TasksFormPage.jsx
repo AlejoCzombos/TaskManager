@@ -46,24 +46,21 @@ export function TasksFormPage() {
       return;
     }
 
+    let response;
     if (params.id) {
       const newTask = { ...value, id: params.id };
-      const res = await updateTask(newTask);
-      toast.promise(res.json(), {
-        loading: "Actualizando...",
-        success: <b>Tarea actualizada!</b>,
-        error: <b>Error al actualizar la tarea 😓</b>,
-      });
-      navigate("/");
+      response = updateTask(newTask);
     } else {
-      const res = await createTask(value);
-      toast.promise(res.json(), {
-        loading: "Creando...",
-        success: <b>Tarea creada!</b>,
-        error: <b>Error al crear la tarea 😓</b>,
-      });
-      navigate("/");
+      response = createTask(value);
     }
+
+    toast.promise(response, {
+      loading: params.id ? "Actualizando..." : "Creando...",
+      success: params.id ? <b>Tarea actualizada!</b> : <b>Tarea creada!</b>,
+      error: <b>Error al {params.id ? "actualizar" : "crear"} la tarea 😓</b>,
+    });
+
+    navigate("/");
   });
 
   function formatDate(inputDate) {

@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { AuthRegister } from "../api/auth.api";
 import { useLogin } from "../Context/login";
+import toast from "react-hot-toast";
 
 export function RegisterPage({ children }) {
   const { setIsLogin, isOpenRegister, setIsOpenRegister, setIsOpenLogin } =
@@ -9,6 +10,7 @@ export function RegisterPage({ children }) {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
@@ -25,8 +27,22 @@ export function RegisterPage({ children }) {
       password: value.password,
     };
 
-    await AuthRegister(data);
-    navigate("/");
+    const registerPromise = AuthRegister(data);
+
+    toast.promise(registerPromise, {
+      loading: "Cargando...",
+      success: <b>Cuenta creada exitosamente!</b>,
+      error: <b>Error al registrar la cuenta 😓</b>,
+    });
+
+    try {
+      // Assuming AuthRegister returns the response directly
+      // If not, modify this part accordingly
+      await registerPromise;
+      navigate("/");
+    } catch (error) {
+      console.error("Error during registration:", error);
+    }
   });
 
   return (

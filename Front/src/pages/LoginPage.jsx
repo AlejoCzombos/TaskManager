@@ -21,21 +21,27 @@ export function LoginPage() {
   };
 
   const onSubmit = handleSubmit(async (value) => {
-    const res = await AuthLogin(value);
-    const data = await res.json();
+    const response = AuthLogin(value);
 
-    toast.promise(Promise.resolve(data), {
+    toast.promise(response, {
       loading: "Cargando...",
       success: <b>Sesión iniciada!</b>,
       error: <b>Error al iniciar sesión 😓</b>,
     });
 
-    if (data && data.token) {
-      setIsLogin(true);
-      SaveUser(data.token);
-      setIsOpenLogin(false);
+    try {
+      const res = await response;
+      const data = await res.json();
+
+      if (data && data.token) {
+        setIsLogin(true);
+        SaveUser(data.token);
+        setIsOpenLogin(false);
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
     }
-    navigate("/");
   });
 
   return (
@@ -151,10 +157,8 @@ export function LoginPage() {
           <button
             className="w-full mt-4 bg-green-700/90 text-white font-semibold hover:bg-green-600/90 p-2 px-3.5 rounded-xl"
             onClick={() => {
-              //setValue("username", "test@test.com");
-              //setValue("password", "testpassword");
-              setValue("username", "alejoczombos@gmail.com");
-              setValue("password", "hola");
+              setValue("username", "test@test.com");
+              setValue("password", "testpassword");
             }}
           >
             Prueba / Test
