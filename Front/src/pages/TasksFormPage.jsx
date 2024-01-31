@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
 import { useLogin } from "../Context/login";
+import { format } from "date-fns";
 import {
   createTask,
   updateTask,
@@ -14,8 +15,9 @@ export function TasksFormPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
     reset,
+    setValue,
+    formState: { errors },
   } = useForm();
 
   const { isLogin } = useLogin();
@@ -27,7 +29,11 @@ export function TasksFormPage() {
       if (params.id) {
         const res = await getTaskById(params.id);
         const data = await res.json();
-        reset(data);
+        setValue("title", data.title);
+        setValue("description", data.description);
+        setValue("date", formatDate(data.date));
+        setValue("important", data.important);
+        setValue("finished", data.finished);
       }
     }
     getTask();
@@ -36,11 +42,13 @@ export function TasksFormPage() {
   const onSubmit = handleSubmit(async (value) => {
     if (!isLogin) {
       toast.error("Inicie sesión para crear una tarea");
+      reset();
       return;
     }
 
     if (params.id) {
-      const res = await updateTask(value);
+      const newTask = { ...value, id: params.id };
+      const res = await updateTask(newTask);
       toast.promise(res.json(), {
         loading: "Actualizando...",
         success: <b>Tarea actualizada!</b>,
@@ -58,6 +66,11 @@ export function TasksFormPage() {
     }
   });
 
+  function formatDate(inputDate) {
+    const parsedDate = new Date(inputDate);
+    return format(parsedDate, "yyyy-MM-dd");
+  }
+
   return (
     <div className="max-w-md mx-auto">
       <form onSubmit={onSubmit}>
@@ -69,14 +82,14 @@ export function TasksFormPage() {
             htmlFor="title"
             className="block mb-2 text-sm font-medium text-white"
           >
-            Titulo de ejemplo
+            Título
           </label>
           <input
             autoFocus
             type="title"
             id="title"
             className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
-            placeholder="Título"
+            placeholder="Desarrollar aplicación web con React"
             {...register("title", {
               required: "El título es requerido",
               maxLength: {
@@ -105,7 +118,7 @@ export function TasksFormPage() {
             id="description"
             rows="4"
             className="block p-2.5 w-full min-h-16 max-h-32 text-sm rounded-xl border-2 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
-            placeholder="Descripción"
+            placeholder="Desarrollar aplicación de tareas con React, Spring Boot y PostgreSQL"
             {...register("description", {
               maxLength: {
                 value: 250,
@@ -122,6 +135,39 @@ export function TasksFormPage() {
             <span className="text-sm text-red-400">
               {errors.description.message}
             </span>
+          )}
+        </div>
+
+        <div className="mb-5">
+          <label
+            htmlFor="date"
+            className="block mb-2 text-sm font-medium text-white"
+          >
+            Fecha
+          </label>
+          <input
+            type="date"
+            id="date"
+            className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
+            placeholder="Desarrollar aplicación web con React"
+            {...register("date", {
+              required: "La fecha es requerida",
+              validate: (value) => {
+                const date = new Date(value);
+                const maxDate = new Date(2100, 1, 1);
+                const today = new Date();
+                if (date < today) {
+                  return "La fecha no puede ser anterior al día de hoy";
+                }
+                if (date > maxDate) {
+                  return "La fecha no puede ser mayor al 2100";
+                }
+                return true;
+              },
+            })}
+          />
+          {errors.date && (
+            <span className="text-sm text-red-400">{errors.date.message}</span>
           )}
         </div>
 
