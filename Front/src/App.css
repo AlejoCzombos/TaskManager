@@ -1,41 +1,45 @@
 #app {
-    display: grid;
-    grid-template-areas: "aside main main";
-    grid-template-columns: 250px 1fr;
-    grid-template-rows: 100% 1fr;
+  display: grid;
+  grid-template-areas: "aside main main";
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: 100% 1fr;
 
-
-    font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 
 .navigation {
-    position: relative;
+  position: relative;
 }
 
 .navigation::after {
-    position: absolute;
-    content: "";
-    bottom: -0.5rem;
-    left: 0;
-    width: 3rem;
-    height: 0.3rem;
-    background-color: rgb(34 197 94 / 0.9);
-    border-radius: 0.5rem;
+  position: absolute;
+  content: "";
+  bottom: -0.5rem;
+  left: 0;
+  width: 3rem;
+  height: 0.3rem;
+  background-color: rgb(34 197 94 / 0.9);
+  border-radius: 0.5rem;
+  transition: width 0.15s ease-in-out;
+}
+
+.navigation:hover::after {
+  width: 4rem;
 }
 
 .sideMenuItem {
-    position: relative;
+  position: relative;
 }
 .sideMenuItem::before {
-    position: absolute;
-    content: "";
-    right: 0;
-    top: 0;
-    width: 0%;
-    height: 100%;
-    background-color: rgb(34 197 94 / 0.9);
-    border-radius: 0.5rem;
+  position: absolute;
+  content: "";
+  right: 0;
+  top: 0;
+  width: 0%;
+  height: 100%;
+  background-color: rgb(34 197 94 / 0.9);
+  border-radius: 0.5rem;
 }
-.active::before{
-    width: 0.3rem;
+.active::before {
+  width: 0.3rem;
 }
