@@ -11,10 +11,10 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
     List<Task> findAllByUserIdOrderByDateDesc(Long userId);
 
-    List<Task> findAllByFinishedTrueOrderByDateDesc();
+    List<Task> findAllByFinishedTrueAndUserIdOrderByDateDesc(Long userId);
 
-    List<Task> findAllByFinishedFalseOrderByDateDesc();
+    List<Task> findAllByFinishedFalseAndUserIdOrderByDateDesc(Long userId);
 
-    List<Task> findAllByImportantTrueOrderByDateDesc();
+    List<Task> findAllByImportantTrueAndUserIdOrderByDateDesc(Long userId);
 
 }

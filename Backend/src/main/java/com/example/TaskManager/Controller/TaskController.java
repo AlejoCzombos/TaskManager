@@ -27,17 +27,17 @@ public class TaskController {
 
     @GetMapping("/finished")
     public List<Task> getAllByFinished(@RequestParam("userId") Long userId){
-        return service.findByFinished();
+        return service.findByFinished(userId);
     }
 
     @GetMapping("/unfinished")
     public List<Task> getAllByUnfinished(@RequestParam("userId") Long userId){
-        return service.findByUnfinished();
+        return service.findByUnfinished(userId);
     }
 
     @GetMapping("/important")
     public List<Task> getAllByImportant(@RequestParam("userId") Long userId){
-        return service.findByImportant();
+        return service.findByImportant(userId);
     }
 
     @PostMapping

@@ -11,11 +11,11 @@ public interface TaskService {
 
     List<Task> findByUserId(Long userId);
 
-    List<Task> findByImportant();
+    List<Task> findByImportant(Long userId);
 
-    List<Task>  findByFinished();
+    List<Task>  findByFinished(Long userId);
 
-    List<Task>  findByUnfinished();
+    List<Task>  findByUnfinished(Long userId);
 
     ResponseEntity<Task> create(Task task, Long userId);
 
