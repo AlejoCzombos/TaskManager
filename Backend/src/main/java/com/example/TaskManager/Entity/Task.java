@@ -35,9 +35,8 @@ public class Task {
     @Column(name = "important")
     private Boolean important = false;
 
-    @CreationTimestamp
-    @Column(name = "creation_date", nullable = false)
-    private Date creationDate;
+    @Column(name = "date", nullable = false)
+    private Date date;
 
     @JsonIgnore
     @ManyToOne
