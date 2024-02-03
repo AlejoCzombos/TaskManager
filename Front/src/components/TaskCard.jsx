@@ -56,7 +56,7 @@ export function TaskCard({ task }) {
       )}
       <div>
         <h2
-          className={`text-xl text-white mb-1 font-bold line-clamp-1 max-w-[95%]`}
+          className={`text-xl text-white mb-1 font-bold line-clamp-1 max-w-[90%]`}
         >
           {task.title}
         </h2>
