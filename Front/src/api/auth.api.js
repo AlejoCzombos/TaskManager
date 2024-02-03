@@ -1,6 +1,6 @@
 import { SaveUser } from "../service/loginService";
 
-const BASEURL = "http://localhost:8081/api/auth";
+const BASEURL = "https://taskmanager-back.onrender.com/api/auth";
 
 export const AuthLogin = (body) => {
   const url = `${BASEURL}/login`;

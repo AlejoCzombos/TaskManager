@@ -1,6 +1,6 @@
 import { GetToken, GetUserId } from "../service/loginService";
 
-const BASEURL = "http://localhost:8081/api/tasks";
+const BASEURL = "https://taskmanager-back.onrender.com/api/tasks";
 
 export const getAllTasks = () => {
   const url = `${BASEURL}?userId=${GetUserId()}`;
