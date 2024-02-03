@@ -10,9 +10,9 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>TaskManager</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>TaskManager</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Aplicación de Manejo de Tareas con autenticación basada en JWT</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -39,7 +39,7 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
+			<version>42.6.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
