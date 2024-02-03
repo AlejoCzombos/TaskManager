@@ -24,7 +24,7 @@ export function LoginPage() {
     const response = AuthLogin(value);
 
     toast.promise(response, {
-      loading: "Cargando...",
+      loading: "Cargando...\nDisculpe la demora, hosting gratuito 😅",
       success: <b>Sesión iniciada!</b>,
       error: <b>Error al iniciar sesión 😓</b>,
     });
