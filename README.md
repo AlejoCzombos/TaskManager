@@ -2,49 +2,53 @@
 
 1. [Introducción](#introducción)
 
-   - 1.1 [Descripción del Proyecto](#descripción-del-proyecto)
-   - 1.2 [Tecnologías Utilizadas](#tecnologías-utilizadas)
-   - 1.3 [Arquitectura](#arquitectura)
-     - 1.3.1 [Arquitectura General del Sistema](#arquitectura-general-del-sistema)
-   - 1.4 [Configuración del Entorno](#configuración-del-entorno)
-     - 1.4.1 [Requisitos del Sistema](#requisitos-del-sistema)
-     - 1.4.2 [Instrucciones de Implementación](#instrucciones-de-implementación)
-       - 1.4.2.1 [Backend](#backend)
-       - 1.4.2.2 [Frontend](#frontend)
+   - [Descripción del Proyecto](#descripción-del-proyecto)
+   - [Tecnologías Utilizadas](#tecnologías-utilizadas)
 
-2. [Modelo de Datos](#modelo-de-datos)
+2. [Arquitectura](#arquitectura)
 
-   - 2.1 [Diagrama de Entidad-Relación (ER)](#diagrama-de-entidad-relación-er)
+3. [Configuración del Entorno](#configuración-del-entorno)
 
-3. [Descripción de Entidades](#descripción-de-entidades)
+   - [Requisitos del Sistema](#requisitos-del-sistema)
+   - [Instrucciones de Implementación](#instrucciones-de-implementación)
+     - [Backend](#backend)
+     - [Frontend](#frontend)
 
-   - 3.1 [Tarea](#tarea)
-   - 3.2 [Usuario (User)](#usuario-user)
-   - 3.3 [Rol (Role)](#rol-role)
+4. [Modelo de Datos](#modelo-de-datos)
 
-4. [Seguridad](#seguridad)
-
-   - 4.1 [Configuración de Spring Security y JWT](#configuración-de-spring-security-y-jwt)
-   - 4.2 [Protección de Rutas y Recursos](#protección-de-rutas-y-recursos)
+   - [Diagrama de Entidad-Relación (ER)](#diagrama-de-entidad-relación-er)
+   - [Descripción de Entidades](#descripción-de-entidades)
+     - [Tarea](#tarea)
+     - [Usuario (User)](#usuario-user)
+     - [Rol (Role)](#rol-role)
 
 5. [API REST](#api-rest)
 
-   - 5.1 [TaskController](#taskcontroller)
+   - [TaskController](#taskcontroller)
 
-     - 5.1.1 [Obtener Tarea por ID](#obtener-tarea-por-id)
-     - 5.1.2 [Obtener Todas las Tareas por ID de Usuario](#obtener-todas-las-tareas-por-id-de-usuario)
-     - 5.1.3 [Obtener Todas las Tareas Completadas por ID de Usuario](#obtener-todas-las-tareas-completadas-por-id-de-usuario)
-     - 5.1.4 [Obtener Todas las Tareas Pendientes por ID de Usuario](#obtener-todas-las-tareas-pendientes-por-id-de-usuario)
-     - 5.1.5 [Obtener Todas las Tareas Importantes por ID de Usuario](#obtener-todas-las-tareas-importantes-por-id-de-usuario)
-     - 5.1.6 [Crear Nueva Tarea](#crear-nueva-tarea)
-     - 5.1.7 [Actualizar Tarea Existente](#actualizar-tarea-existente)
-     - 5.1.8 [Cambia el Estado de una tarea por su ID](#cambia-el-estado-de-una-tarea-por-su-id)
-     - 5.1.9 [Eliminar Tarea por ID](#eliminar-tarea-por-id)
+     - [Obtener Tarea por ID](#obtener-tarea-por-id)
+     - [Obtener Todas las Tareas por ID de Usuario](#obtener-todas-las-tareas-por-id-de-usuario)
+     - [Obtener Todas las Tareas Completadas por ID de Usuario](#obtener-todas-las-tareas-completadas-por-id-de-usuario)
+     - [Obtener Todas las Tareas Pendientes por ID de Usuario](#obtener-todas-las-tareas-pendientes-por-id-de-usuario)
+     - [Obtener Todas las Tareas Importantes por ID de Usuario](#obtener-todas-las-tareas-importantes-por-id-de-usuario)
+     - [Crear Nueva Tarea](#crear-nueva-tarea)
+     - [Actualizar Tarea Existente](#actualizar-tarea-existente)
+     - [Cambia el Estado de una tarea por su ID](#cambia-el-estado-de-una-tarea-por-su-id)
+     - [Eliminar Tarea por ID](#eliminar-tarea-por-id)
 
-   - 5.2 [AuthController](#authcontroller)
+   - [AuthController](#authcontroller)
 
-     - 5.2.1 [Iniciar Sesión (Login)](#iniciar-sesión-login)
-     - 5.2.2 [Registrar Nuevo Usuario](#registrar-nuevo-usuario)
+     - [Iniciar Sesión (Login)](#iniciar-sesión-login)
+     - [Registrar Nuevo Usuario](#registrar-nuevo-usuario)
+
+6. [Seguridad](#seguridad)
+
+   - [Configuración de Spring Security y JWT](#configuración-de-spring-security-y-jwt)
+   - [Protección de Rutas y Recursos](#protección-de-rutas-y-recursos)
+
+7. [Despliegue](#despliegue)
+   - [Frontend](#deploy-frontend)
+   - [Backend](#deploy-backend)
 
 ## Introducción
 
@@ -75,8 +79,6 @@ El Gestor de Tareas es una aplicación Full Stack construida con Spring Boot 3 y
   - react-hot-toast
 
 ## Arquitectura
-
-### Arquitectura General del Sistema
 
 La aplicación sigue una arquitectura monolítica, con el backend implementado como una API RESTful y el frontend como una aplicación de una sola página (SPA).
 
@@ -362,3 +364,15 @@ Las rutas y recursos sensibles de la API están protegidos mediante Spring Secur
     "lastname": "String"
   }
   ```
+
+## Despliegue
+
+Tanto el backend como el frontend e incluso la Base de Datos están desplegados en [Render](https://render.com/). Puedes acceder a ellas mediante los siguientes enlaces.
+
+### Deploy Frontend
+
+[![Despliegue del Frontend](https://render.com/images/deploy-to-render-button.svg)](https://taskmanager-u3h3.onrender.com)
+
+### Deploy Backend
+
+[![Despliegue del Frontend](https://render.com/images/deploy-to-render-button.svg)](https://taskmanager-back.onrender.com)
