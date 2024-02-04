@@ -46,33 +46,35 @@ export function TaskCard({ task }) {
     <div
       className="border-2 rounded-xl border-zinc-600
       bg-zinc-700
-      h-48 w-50 p-4
+      md:h-48 h-64 w-50 md:p-4 p-6
       text-white
       flex flex-col justify-between
       relative"
     >
       {task.important && (
-        <ImportantIcon className="size-7 fill-white border-2 p-[4px] rounded-full absolute top-4 right-4" />
+        <ImportantIcon className="md:size-7 size-9 fill-white border-2 p-[4px] rounded-full absolute top-4 right-4" />
       )}
       <div>
         <h2
-          className={`md:text-lg text-xl text-white mb-1 font-bold line-clamp-1 max-w-[90%]`}
+          className={`md:text-lg text-2xl text-white md:mb-1 mb-2.5 font-bold line-clamp-1 max-w-[90%]`}
         >
           {task.title}
         </h2>
-        <p className="md:text-sm text-lg font-light line-clamp-3">
+        <p className="md:text-sm text-xl font-light line-clamp-3">
           {task.description}
         </p>
       </div>
 
       <div className="flex flex-row justify-between">
-        <div className="">
-          <p className="text-sm font-normal mb-2">{formatDate(task.date)}</p>
+        <div>
+          <p className="md:text-sm text-xl font-normal mb-2">
+            {formatDate(task.date)}
+          </p>
           <Link
             onClick={() => {
               HandleUpdateTaskCompleted(task.id);
             }}
-            className={`text-sm rounded-full p-1 px-2 ${finishedStyle}`}
+            className={`md:text-sm text-xl rounded-full p-1 px-2 ${finishedStyle}`}
           >
             {task.finished ? "Completado" : "En Proceso"}
           </Link>
@@ -80,14 +82,14 @@ export function TaskCard({ task }) {
 
         <div className="flex flex-row items-end mb-1 gap-2.5">
           <Link to={`/tasks-edit/${task.id}`}>
-            <PenIcon className="size-5 fill-zinc-500 hover:fill-white transition hover:scale-125" />
+            <PenIcon className="md:size-5 size-9 md:mr-0 mr-3 fill-zinc-500 hover:fill-white transition hover:scale-125" />
           </Link>
           <Link
             onClick={() => {
               HandleDeleteTask(task.id);
             }}
           >
-            <TrashIcon className="size-5 fill-zinc-500 hover:fill-red-500 transition hover:scale-125" />
+            <TrashIcon className="md:size-5 size-9 fill-zinc-500 hover:fill-red-500 transition hover:scale-125" />
           </Link>
         </div>
       </div>

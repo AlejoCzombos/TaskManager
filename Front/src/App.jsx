@@ -27,7 +27,7 @@ function App() {
           <main className="[grid-area:main] main bg-zinc-900 rounded-xl border-2 border-zinc-800 overflow-y-auto relative z-0">
             <MenuIcon
               id="menu-button"
-              className=" md:hidden absolute left-3 top-3 size-16 fill-slate-200 bg-slate-700/90 z-10 p-4 rounded-full cursor-pointer transition-colors duration-300 ease-in-out"
+              className=" md:hidden fixed left-6 top-6 size-16 fill-slate-200 bg-zinc-700/90 z-10 p-4 rounded-full cursor-pointer transition-colors duration-300 ease-in-out"
               onClick={() => {
                 document.getElementById("aside").classList.toggle("open");
                 document.addEventListener("click", function (event) {
