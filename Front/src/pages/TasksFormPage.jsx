@@ -77,7 +77,7 @@ export function TasksFormPage() {
         <div className="mb-5">
           <label
             htmlFor="title"
-            className="block mb-2 text-sm font-medium text-white"
+            className="block mb-2 md:text-sm text-xl font-medium text-white"
           >
             Título
           </label>
@@ -85,7 +85,7 @@ export function TasksFormPage() {
             autoFocus
             type="title"
             id="title"
-            className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
+            className=" border-2 md:text-sm text-xl rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
             placeholder="Desarrollar aplicación web con React"
             {...register("title", {
               required: "El título es requerido",
@@ -100,21 +100,23 @@ export function TasksFormPage() {
             })}
           />
           {errors.title && (
-            <span className="text-sm text-red-400">{errors.title.message}</span>
+            <span className="md:text-sm text-xl text-red-400">
+              {errors.title.message}
+            </span>
           )}
         </div>
 
         <div className="mb-5">
           <label
             htmlFor="description"
-            className="block mb-2 text-sm font-medium text-white"
+            className="block mb-2 md:text-sm text-xl font-medium text-white"
           >
             Descripción
           </label>
           <textarea
             id="description"
             rows="4"
-            className="block p-2.5 w-full min-h-16 max-h-32 text-sm rounded-xl border-2 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
+            className="block p-2.5 w-full min-h-16 max-h-32 md:text-sm text-xl rounded-xl border-2 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
             placeholder="Desarrollar aplicación de tareas con React, Spring Boot y PostgreSQL"
             {...register("description", {
               maxLength: {
@@ -129,7 +131,7 @@ export function TasksFormPage() {
             })}
           ></textarea>
           {errors.description && (
-            <span className="text-sm text-red-400">
+            <span className="md:text-sm text-xl text-red-400">
               {errors.description.message}
             </span>
           )}
@@ -138,14 +140,14 @@ export function TasksFormPage() {
         <div className="mb-5">
           <label
             htmlFor="date"
-            className="block mb-2 text-sm font-medium text-white"
+            className="block mb-2 md:text-sm text-xl font-medium text-white"
           >
             Fecha
           </label>
           <input
             type="date"
             id="date"
-            className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
+            className=" border-2 md:text-sm text-xl rounded-xl block w-full p-2.5 bg-zinc-700 border-zinc-600 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
             placeholder="Desarrollar aplicación web con React"
             {...register("date", {
               required: "La fecha es requerida",
@@ -164,21 +166,23 @@ export function TasksFormPage() {
             })}
           />
           {errors.date && (
-            <span className="text-sm text-red-400">{errors.date.message}</span>
+            <span className="md:text-sm text-xl text-red-400">
+              {errors.date.message}
+            </span>
           )}
         </div>
 
         <div className="flex justify-between p-4 mb-4 bg-zinc-700 rounded-xl">
           <label
             htmlFor="important"
-            className="ms-2 text-sm font-medium text-gray-300 cursor-pointer"
+            className="ms-2 md:text-sm text-xl font-medium text-gray-300 cursor-pointer"
           >
             Importante
           </label>
           <input
             id="important"
             type="checkbox"
-            className="w-4 h-4 rounded focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none ring-offset-zinc-600 focus:ring-offset-zinc-600 focus:ring-2 bg-zinc-700 border-zinc-600"
+            className="md:size-4 size-7 rounded focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none ring-offset-zinc-600 focus:ring-offset-zinc-600 focus:ring-2 bg-zinc-700 border-zinc-600"
             {...register("important")}
           />
         </div>
@@ -186,24 +190,24 @@ export function TasksFormPage() {
         <div className="flex justify-between p-4 mb-4 bg-zinc-700 rounded-xl">
           <label
             htmlFor="finished"
-            className="ms-2 text-sm font-medium text-gray-300 cursor-pointer"
+            className="ms-2 md:text-sm text-xl font-medium text-gray-300 cursor-pointer"
           >
             Finalizado
           </label>
           <input
             id="finished"
             type="checkbox"
-            className="w-4 h-4 rounded focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none ring-offset-zinc-600 focus:ring-offset-zinc-600 focus:ring-2 bg-zinc-700 border-zinc-600"
+            className="md:size-4 size-7 rounded focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none ring-offset-zinc-600 focus:ring-offset-zinc-600 focus:ring-2 bg-zinc-700 border-zinc-600"
             {...register("finished")}
           />
         </div>
 
-        <button className="w-full bg-green-500/90 text-white font-semibold hover:bg-green-400/90 p-2 px-3.5 rounded-xl">
+        <button className="w-full bg-green-500/90 text-white md:text-lg text-2xl font-semibold hover:bg-green-400/90 p-2 px-3.5 rounded-xl">
           {params.id ? "Actualizar tarea" : "Crear tarea"}
         </button>
       </form>
       {params.id && (
-        <button className="mt-3 cursor-pointer w-full bg-red-500/90 text-white font-semibold hover:bg-red-400/90 p-2 px-3.5 rounded-xl">
+        <button className="mt-3 cursor-pointer w-full bg-red-500/90 md:text-lg text-2xl text-white font-semibold hover:bg-red-400/90 p-2 px-3.5 rounded-xl">
           Eliminar tarea
         </button>
       )}

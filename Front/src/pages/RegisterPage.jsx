@@ -36,8 +36,6 @@ export function RegisterPage({ children }) {
     });
 
     try {
-      // Assuming AuthRegister returns the response directly
-      // If not, modify this part accordingly
       await registerPromise;
       navigate("/");
     } catch (error) {
@@ -48,7 +46,7 @@ export function RegisterPage({ children }) {
   return (
     <div
       onClick={onClose}
-      className={`fixed inset-0 flex justify-center items-center
+      className={`fixed inset-0 flex justify-center items-center z-30
     transition-colors ${isOpenRegister ? "visible bg-black/50" : "invisible"}
   `}
     >
@@ -61,17 +59,17 @@ export function RegisterPage({ children }) {
         <PlusIcon
           onClick={onClose}
           className="
-          absolute top-3 right-3
+          absolute md:top-3 md:right-3 top-6 right-6
         fill-zinc-500
           flex justify-end
           rounded-full
           transition hover:scale-125
-          size-6 rotate-45
+          md:size-6 size-9 rotate-45
           cursor-pointer
           "
         />
 
-        <h1 className="text-center text-white font-bold text-3xl mb-4 mt-2">
+        <h1 className="text-center text-white font-bold md:text-3xl text-4xl mb-4 mt-2">
           Registrarse
         </h1>
 
@@ -79,7 +77,7 @@ export function RegisterPage({ children }) {
           <div className="mb-3">
             <label
               htmlFor="firstname"
-              className="block mb-2 text-sm font-medium text-white"
+              className="block mb-2 md:text-sm text-xl font-medium text-white"
             >
               Nombre:
             </label>
@@ -87,7 +85,7 @@ export function RegisterPage({ children }) {
               autoFocus={isOpenRegister ? true : false}
               type="firstname"
               id="firstname"
-              className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-600 border-zinc-500 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
+              className=" border-2 md:text-sm text-xl rounded-xl block w-full p-2.5 bg-zinc-600 border-zinc-500 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
               placeholder="Alejo"
               {...register("firstname", {
                 required: "El nombre es requerido",
@@ -102,7 +100,7 @@ export function RegisterPage({ children }) {
               })}
             />
             {errors.firstname && (
-              <span className="text-sm text-red-400">
+              <span className="md:text-sm text-xl text-red-400">
                 {errors.firstname.message}
               </span>
             )}
@@ -111,14 +109,14 @@ export function RegisterPage({ children }) {
           <div className="mb-3">
             <label
               htmlFor="lastname"
-              className="block mb-2 text-sm font-medium text-white"
+              className="block mb-2 md:text-sm text-xl font-medium text-white"
             >
               Apellido:
             </label>
             <input
               type="lastname"
               id="lastname"
-              className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-600 border-zinc-500 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
+              className=" border-2 md:text-sm text-xl rounded-xl block w-full p-2.5 bg-zinc-600 border-zinc-500 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
               placeholder="Czombos"
               {...register("lastname", {
                 required: "El apellido es requerido",
@@ -133,7 +131,7 @@ export function RegisterPage({ children }) {
               })}
             />
             {errors.lastname && (
-              <span className="text-sm text-red-400">
+              <span className="md:text-sm text-xl text-red-400">
                 {errors.lastname.message}
               </span>
             )}
@@ -142,14 +140,14 @@ export function RegisterPage({ children }) {
           <div className="mb-3">
             <label
               htmlFor="usernameRegister"
-              className="block mb-2 text-sm font-medium text-white"
+              className="block mb-2 md:text-sm text-xl font-medium text-white"
             >
               Correo electrónico:
             </label>
             <input
               type="username"
               id="usernameRegister"
-              className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-600 border-zinc-500 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
+              className=" border-2 md:text-sm text-xl rounded-xl block w-full p-2.5 bg-zinc-600 border-zinc-500 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
               placeholder="ejemplo@gmail.com"
               {...register("username", {
                 required: "El email es requerido",
@@ -168,7 +166,7 @@ export function RegisterPage({ children }) {
               })}
             />
             {errors.username && (
-              <span className="text-sm text-red-400">
+              <span className="md:text-sm text-xl text-red-400">
                 {errors.username.message}
               </span>
             )}
@@ -177,14 +175,14 @@ export function RegisterPage({ children }) {
           <div className="mb-3">
             <label
               htmlFor="passwordRegister"
-              className="block mb-2 text-sm font-medium text-white"
+              className="block mb-2 md:text-sm text-xl font-medium text-white"
             >
               Contraseña:
             </label>
             <input
               type="password"
               id="passwordRegister"
-              className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-600 border-zinc-500 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
+              className=" border-2 md:text-sm text-xl rounded-xl block w-full p-2.5 bg-zinc-600 border-zinc-500 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
               placeholder="********"
               {...register("password", {
                 required: "La contraseña es requerida",
@@ -196,7 +194,7 @@ export function RegisterPage({ children }) {
               })}
             />
             {errors.password && (
-              <span className="text-sm text-red-400">
+              <span className="md:text-sm text-xl text-red-400">
                 {errors.password.message}
               </span>
             )}
@@ -205,14 +203,14 @@ export function RegisterPage({ children }) {
           <div className="mb-4">
             <label
               htmlFor="passwordRegister2"
-              className="block mb-2 text-sm font-medium text-white"
+              className="block mb-2 md:text-sm text-xl font-medium text-white"
             >
               Confirmar contraseña:
             </label>
             <input
               type="password"
               id="passwordRegister2"
-              className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-600 border-zinc-500 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
+              className=" border-2 md:text-sm text-xl rounded-xl block w-full p-2.5 bg-zinc-600 border-zinc-500 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
               placeholder="********"
               {...register("password2", {
                 required: "Confirmar contraseña es requerido",
@@ -230,12 +228,12 @@ export function RegisterPage({ children }) {
               })}
             />
             {errors.password2 && (
-              <span className="text-sm text-red-400">
+              <span className="md:text-sm text-xl text-red-400">
                 {errors.password2.message}
               </span>
             )}
           </div>
-          <p className="text-white mb-4 text-center">
+          <p className="text-white mb-4 text-center md:text-base text-xl">
             ¿Ya tenes una cuenta?{" "}
             <a
               href="#"
@@ -249,7 +247,7 @@ export function RegisterPage({ children }) {
             </a>
           </p>
 
-          <button className="w-full bg-green-500/90 text-white font-semibold hover:bg-green-400/90 p-2 px-3.5 rounded-xl">
+          <button className="w-full bg-green-500/90 md:text-base text-2xl text-white font-semibold hover:bg-green-400/90 p-2 px-3.5 rounded-xl">
             Registrarse
           </button>
         </form>

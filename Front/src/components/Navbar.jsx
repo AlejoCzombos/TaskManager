@@ -5,19 +5,19 @@ export function Navbar() {
   return (
     <div>
       <SideMenuItem text="Todas las Tareas" to="/tasks/all">
-        <HomeIcon className="size-6" />
+        <HomeIcon className="md:size-6 size-8" />
       </SideMenuItem>
 
       <SideMenuItem text="Importante!" to="/tasks/important">
-        <ImportantIcon className="size-6" />
+        <ImportantIcon className="md:size-6 size-8" />
       </SideMenuItem>
 
       <SideMenuItem text="Completado!" to="/tasks/completed">
-        <CheckIcon className="size-6" />
+        <CheckIcon className="md:size-6 size-8" />
       </SideMenuItem>
 
       <SideMenuItem text="Por hacer" to="/tasks/incompleted">
-        <ListIcon className="size-6" />
+        <ListIcon className="md:size-6 size-8" />
       </SideMenuItem>
     </div>
   );

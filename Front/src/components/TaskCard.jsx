@@ -56,11 +56,13 @@ export function TaskCard({ task }) {
       )}
       <div>
         <h2
-          className={`text-xl text-white mb-1 font-bold line-clamp-1 max-w-[90%]`}
+          className={`md:text-lg text-xl text-white mb-1 font-bold line-clamp-1 max-w-[90%]`}
         >
           {task.title}
         </h2>
-        <p className="text-sm font-light line-clamp-3">{task.description}</p>
+        <p className="md:text-sm text-lg font-light line-clamp-3">
+          {task.description}
+        </p>
       </div>
 
       <div className="flex flex-row justify-between">

@@ -47,7 +47,7 @@ export function LoginPage() {
   return (
     <div
       onClick={onClose}
-      className={`fixed inset-0 flex justify-center items-center
+      className={`fixed inset-0 flex justify-center items-center z-30
         transition-colors ${isOpenLogin ? "visible bg-black/50" : "invisible"}
       `}
     >
@@ -59,17 +59,17 @@ export function LoginPage() {
         <PlusIcon
           onClick={onClose}
           className="
-          absolute top-3 right-3
+          absolute md:top-3 md:right-3 top-6 right-6
         fill-zinc-500
           flex justify-end
           rounded-full
           transition hover:scale-125
-          size-6 rotate-45
+          md:size-6 size-9 rotate-45
           cursor-pointer
           "
         />
 
-        <h1 className="text-center text-white font-bold text-3xl mb-4 mt-2">
+        <h1 className="text-center text-white font-bold md:text-3xl text-4xl mb-4 mt-2">
           Iniciar Sesión
         </h1>
 
@@ -77,7 +77,7 @@ export function LoginPage() {
           <div className="mb-3">
             <label
               htmlFor="usernameLogin"
-              className="block mb-2 text-sm font-medium text-white"
+              className="block mb-2 md:text-sm text-xl font-medium text-white"
             >
               Correo electrónico:
             </label>
@@ -85,7 +85,7 @@ export function LoginPage() {
               autoFocus={isOpenLogin ? true : false}
               type="username"
               id="usernameLogin"
-              className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-600 border-zinc-500 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
+              className=" border-2 md:text-sm text-xl rounded-xl block w-full p-2.5 bg-zinc-600 border-zinc-500 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
               placeholder="ejemplo@gmail.com"
               {...register("username", {
                 required: "El email es requerido",
@@ -104,7 +104,7 @@ export function LoginPage() {
               })}
             />
             {errors.username && (
-              <span className="text-sm text-red-400">
+              <span className="md:text-sm text-xl text-red-400">
                 {errors.username.message}
               </span>
             )}
@@ -113,14 +113,14 @@ export function LoginPage() {
           <div className="mb-4">
             <label
               htmlFor="passwordLogin"
-              className="block mb-2 text-sm font-medium text-white"
+              className="block mb-2 md:text-sm text-xl font-medium text-white"
             >
               Contraseña:
             </label>
             <input
               type="password"
               id="passwordLogin"
-              className=" border-2 text-sm rounded-xl block w-full p-2.5 bg-zinc-600 border-zinc-500 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
+              className=" border-2 md:text-sm text-xl rounded-xl block w-full p-2.5 bg-zinc-600 border-zinc-500 placeholder-gray-400 text-white focus:ring-green-500/90 focus:border-green-500/90 focus:outline-none"
               placeholder="********"
               {...register("password", {
                 required: "La contraseña es requerida",
@@ -132,12 +132,12 @@ export function LoginPage() {
               })}
             />
             {errors.password && (
-              <span className="text-sm text-red-400">
+              <span className="md:text-sm text-xl text-red-400">
                 {errors.password.message}
               </span>
             )}
           </div>
-          <p className="text-white mb-4 text-center">
+          <p className="text-white mb-4 text-center md:text-base text-xl">
             ¿No tienes una cuenta?{" "}
             <a
               href="#"
@@ -151,11 +151,11 @@ export function LoginPage() {
             </a>
           </p>
 
-          <button className="w-full bg-green-500/90 text-white font-semibold hover:bg-green-400/90 p-2 px-3.5 rounded-xl">
+          <button className="w-full md:text-base text-2xl bg-green-500/90 text-white font-semibold hover:bg-green-400/90 p-2 px-3.5 rounded-xl">
             Iniciar sesión
           </button>
           <button
-            className="w-full mt-4 bg-green-700/90 text-white font-semibold hover:bg-green-600/90 p-2 px-3.5 rounded-xl"
+            className="w-full mt-4 md:text-base text-2xl bg-green-700/90 text-white font-semibold hover:bg-green-600/90 p-2 px-3.5 rounded-xl"
             onClick={() => {
               setValue("username", "test@test.com");
               setValue("password", "testpassword");
