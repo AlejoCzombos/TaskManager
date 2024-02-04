@@ -53,7 +53,7 @@ export function LoginPage() {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`bg-zinc-700 rounded-xl shadow p-5 transition-all
+        className={`bg-zinc-700 rounded-xl shadow p-5 transition-all m-5
       ${isOpenLogin ? "scale-100 opacity-100" : "scale-125 opacity-0"}`}
       >
         <PlusIcon

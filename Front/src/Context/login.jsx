@@ -8,9 +8,7 @@ export function LoginProvider({ children }) {
     return CheckIsLogin();
   });
 
-  const [isOpenLogin, setIsOpenLogin] = useState(() => {
-    return !isLogin;
-  });
+  const [isOpenLogin, setIsOpenLogin] = useState(false);
   const [isOpenRegister, setIsOpenRegister] = useState(false);
 
   return (
