@@ -7,6 +7,40 @@
   font-family: "Nunito", sans-serif;
 }
 
+.main {
+  grid-area: main;
+}
+
+.aside {
+  grid-area: aside;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+  #app {
+    grid-template-areas: "main main main";
+  }
+
+  .main {
+    width: 100%;
+    height: 100%;
+  }
+
+  .aside {
+    position: fixed;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    overflow: auto;
+    transform: translateX(-100%);
+  }
+
+  .aside.open {
+    transform: translateX(0);
+  }
+}
+
 .navigation {
   position: relative;
 }
