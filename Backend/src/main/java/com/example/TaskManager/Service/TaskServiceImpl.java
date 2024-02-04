@@ -39,22 +39,22 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<Task> findByUserId(Long userId) {
-        return repository.findAllByUserIdOrderByDateDesc(userId);
+        return repository.findAllByUserIdOrderByDateAsc(userId);
     }
 
     @Override
     public List<Task> findByImportant(Long userId) {
-        return repository.findAllByImportantTrueAndUserIdOrderByDateDesc(userId);
+        return repository.findAllByImportantTrueAndUserIdOrderByDateAsc(userId);
     }
 
     @Override
     public List<Task> findByFinished(Long userId) {
-        return repository.findAllByFinishedTrueAndUserIdOrderByDateDesc(userId);
+        return repository.findAllByFinishedTrueAndUserIdOrderByDateAsc(userId);
     }
 
     @Override
     public List<Task> findByUnfinished(Long userId) {
-        return repository.findAllByFinishedFalseAndUserIdOrderByDateDesc(userId);
+        return repository.findAllByFinishedFalseAndUserIdOrderByDateAsc(userId);
     }
 
     @Override

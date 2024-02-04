@@ -9,12 +9,12 @@ import java.util.List;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
-    List<Task> findAllByUserIdOrderByDateDesc(Long userId);
+    List<Task> findAllByUserIdOrderByDateAsc(Long userId);
 
-    List<Task> findAllByFinishedTrueAndUserIdOrderByDateDesc(Long userId);
+    List<Task> findAllByFinishedTrueAndUserIdOrderByDateAsc(Long userId);
 
-    List<Task> findAllByFinishedFalseAndUserIdOrderByDateDesc(Long userId);
+    List<Task> findAllByFinishedFalseAndUserIdOrderByDateAsc(Long userId);
 
-    List<Task> findAllByImportantTrueAndUserIdOrderByDateDesc(Long userId);
+    List<Task> findAllByImportantTrueAndUserIdOrderByDateAsc(Long userId);
 
 }
