@@ -60,6 +60,8 @@ export function TasksFormPage() {
       error: <b>Error al {params.id ? "actualizar" : "crear"} la tarea 😓</b>,
     });
 
+    const res = await response;
+
     navigate("/");
   });
 
@@ -154,9 +156,9 @@ export function TasksFormPage() {
               validate: (value) => {
                 const date = new Date(value);
                 const maxDate = new Date(2100, 1, 1);
-                const today = new Date();
+                const today = new Date(2020, 1, 1);
                 if (date < today) {
-                  return "La fecha no puede ser anterior al día de hoy";
+                  return "La fecha no puede ser anterior al 2020";
                 }
                 if (date > maxDate) {
                   return "La fecha no puede ser mayor al 2100";
