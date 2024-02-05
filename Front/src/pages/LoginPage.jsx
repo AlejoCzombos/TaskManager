@@ -4,10 +4,16 @@ import { AuthLogin } from "../api/auth.api";
 import { useLogin } from "../Context/login";
 import { SaveUser } from "../service/loginService";
 import toast from "react-hot-toast";
+import { useEffect } from "react";
 
 export function LoginPage() {
-  const { setIsLogin, isOpenLogin, setIsOpenLogin, setIsOpenRegister } =
-    useLogin();
+  const {
+    setIsLogin,
+    isOpenLogin,
+    setIsOpenLogin,
+    setIsOpenRegister,
+    isLogin,
+  } = useLogin();
   const {
     register,
     handleSubmit,
@@ -43,6 +49,39 @@ export function LoginPage() {
       console.error("Error during login:", error);
     }
   });
+
+  useEffect(() => {
+    async function LoginUser() {
+      if (isLogin) return;
+
+      const value = {
+        username: "test@test.com",
+        password: "testpassword",
+      };
+      const response = AuthLogin(value);
+
+      toast.promise(response, {
+        loading: "Iniciando sesión...\nDisculpe la demora, hosting gratuito 😅",
+        success: <b>Sesión iniciada!</b>,
+        error: <b>Error al iniciar sesión 😓</b>,
+      });
+
+      try {
+        const res = await response;
+        const data = await res.json();
+
+        if (data && data.token) {
+          setIsLogin(true);
+          SaveUser(data.token);
+          setIsOpenLogin(false);
+          navigate("/");
+        }
+      } catch (error) {
+        console.error("Error during login:", error);
+      }
+    }
+    LoginUser();
+  }, []);
 
   return (
     <div
@@ -161,7 +200,7 @@ export function LoginPage() {
               setValue("password", "testpassword");
             }}
           >
-            Prueba / Test
+            Inicio de sesión de prueba
           </button>
         </form>
       </div>
