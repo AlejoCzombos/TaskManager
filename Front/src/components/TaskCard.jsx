@@ -2,8 +2,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { updateTaskCompleted, deleteTask } from "../api/task.api";
 import { format } from "date-fns";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 export function TaskCard({ task }) {
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
+
   const finishedStyle = task.finished
     ? "bg-green-500/90 hover:bg-green-400/90"
     : "bg-red-500/90 hover:bg-red-400/90";
@@ -11,7 +15,11 @@ export function TaskCard({ task }) {
   const navigate = useNavigate();
 
   const HandleUpdateTaskCompleted = async (taskId) => {
+    if (isUpdating) return;
+
     const res = updateTaskCompleted(taskId);
+    setIsUpdating(true);
+
     toast.promise(res, {
       loading: "Actualizando estado...",
       success: <b>Tarea actualizada!</b>,
@@ -26,14 +34,19 @@ export function TaskCard({ task }) {
   };
 
   const HandleDeleteTask = async (taskId) => {
-    const res = await deleteTask(taskId);
-    const data = await res.json();
+    if (isDeleting) return;
 
-    toast.promise(Promise.resolve(data), {
+    const response = deleteTask(taskId);
+    setIsDeleting(true);
+
+    toast.promise(response, {
       loading: "Eliminando...",
       success: <b>Tarea eliminada!</b>,
       error: <b>Error al eliminar la tarea 😓</b>,
     });
+
+    const res = await response;
+
     navigate("/");
   };
 
