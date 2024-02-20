@@ -1,5 +1,6 @@
 package com.example.TaskManager.Service;
 
+import com.example.TaskManager.DTO.TaskDTO;
 import com.example.TaskManager.Entity.Task;
 import com.example.TaskManager.Repository.TaskRepository;
 import com.example.TaskManager.Repository.UserRepository;
@@ -39,7 +40,7 @@ public class TaskServiceTest {
 
         when(taskRepository.findById(1L)).thenReturn(Optional.of(task));
 
-        ResponseEntity<Task> taskResponseEntity = taskService.findById(1L);
+        ResponseEntity<TaskDTO> taskResponseEntity = taskService.findById(1L);
         assertEquals(200, taskResponseEntity.getStatusCodeValue());
         assertEquals("Test", taskResponseEntity.getBody().getTitle());
         assertEquals(task, taskResponseEntity.getBody());
@@ -48,7 +49,7 @@ public class TaskServiceTest {
     public void testFindByIdNotFound() {
         when(taskRepository.findById(1L)).thenReturn(Optional.empty());
 
-        ResponseEntity<Task> taskResponseEntity = taskService.findById(1L);
+        ResponseEntity<TaskDTO> taskResponseEntity = taskService.findById(1L);
         assertEquals(404, taskResponseEntity.getStatusCodeValue());
     }
 
