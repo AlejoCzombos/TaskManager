@@ -1,7 +1,9 @@
 package com.example.TaskManager.Service;
 
+import com.example.TaskManager.DTO.TaskDTO;
 import com.example.TaskManager.Entity.Task;
 import com.example.TaskManager.Entity.User;
+import com.example.TaskManager.Mapper.TaskMapper;
 import com.example.TaskManager.Repository.TaskRepository;
 import com.example.TaskManager.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +26,7 @@ public class TaskServiceImpl implements TaskService {
     private final UserRepository userRepository;
 
     @Override
-    public ResponseEntity<Task> findById(Long taskId) {
+    public ResponseEntity<TaskDTO> findById(Long taskId) {
         Optional<Task> optionalTask = repository.findById(taskId);
 
         if (optionalTask.isEmpty()){
@@ -33,32 +35,41 @@ public class TaskServiceImpl implements TaskService {
         }
 
         Task result = optionalTask.get();
+        TaskDTO response = TaskMapper.toTaskDTO(result);
 
-        return ResponseEntity.ok(result);
+        return ResponseEntity.ok(response);
     }
 
     @Override
-    public List<Task> findByUserId(Long userId) {
-        return repository.findAllByUserIdOrderByDateAsc(userId);
+    public List<TaskDTO> findByUserId(Long userId) {
+        List<Task> tasks = repository.findAllByUserIdOrderByDateAsc(userId);
+        List<TaskDTO> taskDTOS = tasks.stream().map(TaskMapper::toTaskDTO).toList();
+        return taskDTOS;
     }
 
     @Override
-    public List<Task> findByImportant(Long userId) {
-        return repository.findAllByImportantTrueAndUserIdOrderByDateAsc(userId);
+    public List<TaskDTO> findByImportant(Long userId) {
+        List<Task> tasks = repository.findAllByImportantTrueAndUserIdOrderByDateAsc(userId);
+        List<TaskDTO> taskDTOS = tasks.stream().map(TaskMapper::toTaskDTO).toList();
+        return taskDTOS;
     }
 
     @Override
-    public List<Task> findByFinished(Long userId) {
-        return repository.findAllByFinishedTrueAndUserIdOrderByDateAsc(userId);
+    public List<TaskDTO> findByFinished(Long userId) {
+        List<Task> tasks = repository.findAllByFinishedTrueAndUserIdOrderByDateAsc(userId);
+        List<TaskDTO> taskDTOS = tasks.stream().map(TaskMapper::toTaskDTO).toList();
+        return taskDTOS;
     }
 
     @Override
-    public List<Task> findByUnfinished(Long userId) {
-        return repository.findAllByFinishedFalseAndUserIdOrderByDateAsc(userId);
+    public List<TaskDTO> findByUnfinished(Long userId) {
+        List<Task> tasks = repository.findAllByFinishedFalseAndUserIdOrderByDateAsc(userId);
+        List<TaskDTO> taskDTOS = tasks.stream().map(TaskMapper::toTaskDTO).toList();
+        return taskDTOS;
     }
 
     @Override
-    public ResponseEntity<Task> create(Task task, Long userId) {
+    public ResponseEntity<TaskDTO> create(TaskDTO taskDTO, Long userId) {
 
         Optional<User> optionalUser = userRepository.findById(userId);
 
@@ -67,21 +78,23 @@ public class TaskServiceImpl implements TaskService {
             return ResponseEntity.notFound().build();
         }
 
-        if (task.getId() != null){
+        if (taskDTO.getId() != null){
             log.warn("Trying to create a task with id");
             return ResponseEntity.badRequest().build();
         }
 
         User user = optionalUser.get();
+        Task task = TaskMapper.toTask(taskDTO);
         task.setUser(user);
-
         Task result = repository.save(task);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(result);
+        TaskDTO response = TaskMapper.toTaskDTO(result);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @Override
-    public ResponseEntity<Task> update(Task task, Long userId) {
+    public ResponseEntity<TaskDTO> update(Task task, Long userId) {
 
         Optional<User> optionalUser = userRepository.findById(userId);
 
@@ -103,23 +116,25 @@ public class TaskServiceImpl implements TaskService {
         User user = optionalUser.get();
         task.setUser(user);
         Task result = repository.save(task);
+        TaskDTO response = TaskMapper.toTaskDTO(result);
 
-        return ResponseEntity.ok(result);
+        return ResponseEntity.ok(response);
     }
 
     @Override
-    public ResponseEntity<Task> updateCompleted(Long taskId) {
+    public ResponseEntity<TaskDTO> updateCompleted(Long taskId) {
         Task task = repository.findById(taskId).orElseThrow();
 
         task.setFinished(!task.getFinished());
 
         Task result = repository.save(task);
+        TaskDTO response = TaskMapper.toTaskDTO(result);
 
-        return ResponseEntity.ok(result);
+        return ResponseEntity.ok(response);
     }
 
     @Override
-    public ResponseEntity<Task> deleteById(Long taskId) {
+    public ResponseEntity<TaskDTO> deleteById(Long taskId) {
 
         Optional<Task> optionalTask = repository.findById(taskId);
 
