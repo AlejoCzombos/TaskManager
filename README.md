@@ -65,7 +65,9 @@ El Gestor de Tareas es una aplicación Full Stack construida con Spring Boot 3 y
   - Spring Security
   - JWT
   - Maven
-  - Hibernate JPA
+  - Hibernate / JPA
+  - JUnit 5 / Mockito
+  - Swagger / OpenAPI
 
 - Base de Datos:
 
