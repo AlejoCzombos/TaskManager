@@ -12,7 +12,7 @@ public class TaskMapper {
                 .description(task.getDescription())
                 .finished(task.getFinished())
                 .important(task.getImportant())
-                .creationDate(task.getDate())
+                .date(task.getDate())
                 .build();
     }
     public static Task toTask(TaskDTO taskDTO){
@@ -22,7 +22,7 @@ public class TaskMapper {
                 .description(taskDTO.getDescription())
                 .finished(taskDTO.getFinished())
                 .important(taskDTO.getImportant())
-                .date(taskDTO.getCreationDate())
+                .date(taskDTO.getDate())
                 .build();
     }
 }

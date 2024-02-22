@@ -35,5 +35,5 @@ public class TaskDTO {
 
     @NotNull
     @Size(min = 1, max = 10, message = "Date must be in format yyyy-MM-dd")
-    private Date creationDate;
+    private Date date;
 }
