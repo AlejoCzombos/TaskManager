@@ -122,7 +122,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public ResponseEntity<TaskDTO> updateCompleted(Long taskId) {
+    public ResponseEntity<TaskDTO> updateFinishedStatus(Long taskId) {
         Task task = repository.findById(taskId).orElseThrow();
 
         task.setFinished(!task.getFinished());

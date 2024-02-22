@@ -22,7 +22,7 @@ public interface TaskService {
 
     ResponseEntity<TaskDTO> update(Task task, Long userId);
 
-    ResponseEntity<TaskDTO> updateCompleted(Long taskId);
+    ResponseEntity<TaskDTO> updateFinishedStatus(Long taskId);
 
     ResponseEntity<TaskDTO> deleteById(Long taskId);
 

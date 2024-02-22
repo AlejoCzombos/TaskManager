@@ -53,7 +53,7 @@ public class TaskController {
 
     @PutMapping("/{taskId}")
     public ResponseEntity<TaskDTO> updateCompleted(@PathVariable Long taskId){
-        return service.updateCompleted(taskId);
+        return service.updateFinishedStatus(taskId);
     }
 
     @DeleteMapping("/{taskId}")
