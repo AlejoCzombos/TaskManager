@@ -15,7 +15,7 @@ import java.util.List;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
-public class TaskRespositoryTest {
+public class TaskRepositoryTest {
 
     @Autowired
     private TaskRepository taskRepository;
