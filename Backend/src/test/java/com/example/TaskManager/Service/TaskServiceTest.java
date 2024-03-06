@@ -179,6 +179,51 @@ public class TaskServiceTest {
     }
 
     @Test
+    public void TaskService_findByFinished_returnTaskDTOList() {
+        List<Task> tasks = List.of(
+                new Task().builder().id(1L).title("Test").description("Test").finished(false).important(false).date(null).user(null).build(),
+                new Task().builder().id(2L).title("Test").description("Test").finished(false).important(false).date(null).user(null).build()
+        );
+
+        when(taskRepository.findAllByFinishedTrueAndUserIdOrderByDateAsc(1L)).thenReturn(tasks);
+
+        List<TaskDTO> taskDTOS = taskService.findByFinished(1L);
+
+        assertEquals(2, taskDTOS.size());
+        assertEquals(taskDTOS.get(0), TaskMapper.toTaskDTO(tasks.get(0)));
+    }
+
+    @Test
+    public void TaskService_findByUnfinished_returnTaskDTOList() {
+        List<Task> tasks = List.of(
+                new Task().builder().id(1L).title("Test").description("Test").finished(false).important(false).date(null).user(null).build(),
+                new Task().builder().id(2L).title("Test").description("Test").finished(false).important(false).date(null).user(null).build()
+        );
+
+        when(taskRepository.findAllByFinishedFalseAndUserIdOrderByDateAsc(1L)).thenReturn(tasks);
+
+        List<TaskDTO> taskDTOS = taskService.findByUnfinished(1L);
+
+        assertEquals(2, taskDTOS.size());
+        assertEquals(taskDTOS.get(0), TaskMapper.toTaskDTO(tasks.get(0)));
+    }
+
+    @Test
+    public void TaskService_findByImportant_returnTaskDTOList() {
+        List<Task> tasks = List.of(
+                new Task().builder().id(1L).title("Test").description("Test").finished(false).important(false).date(null).user(null).build(),
+                new Task().builder().id(2L).title("Test").description("Test").finished(false).important(false).date(null).user(null).build()
+        );
+
+        when(taskRepository.findAllByImportantTrueAndUserIdOrderByDateAsc(1L)).thenReturn(tasks);
+
+        List<TaskDTO> taskDTOS = taskService.findByImportant(1L);
+
+        assertEquals(2, taskDTOS.size());
+        assertEquals(taskDTOS.get(0), TaskMapper.toTaskDTO(tasks.get(0)));
+    }
+
+    @Test
     public void TaskService_deleteTask_returnStatusNoContent() {
         Task task = new Task().builder().id(1L).title("Test").description("Test").finished(false).important(false).date(null).build();
 
