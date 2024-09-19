@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.example.TaskManager.Repository.TaskRepositoryTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.161 s -- in com.example.TaskManager.Repository.TaskRepositoryTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.744 s -- in com.example.TaskManager.Repository.TaskRepositoryTest

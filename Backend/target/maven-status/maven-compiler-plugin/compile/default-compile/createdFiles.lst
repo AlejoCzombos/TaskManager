@@ -1,0 +1,4 @@
+com\example\TaskManager\DTO\TaskDTO.class
+com\example\TaskManager\Mapper\TaskMapper.class
+com\example\TaskManager\Security\Config\OpenApiConfig.class
+com\example\TaskManager\DTO\TaskDTO$TaskDTOBuilder.class
