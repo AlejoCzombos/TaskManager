@@ -1,31 +1,57 @@
-# Task Manager (Gestor de Tareas - API REST con Autenticación JWT)
+# ✅ Task Manager - Gestor de Tareas 📝
 
-1. [Introducción](#introducción)
+## 📄 Descripción del Proyecto
 
-   - [Descripción del Proyecto](#descripción-del-proyecto)
-   - [Tecnologías Utilizadas](#tecnologías-utilizadas)
+Task Manager es una aplicación Full Stack diseñada para la gestión eficiente de tareas. Los usuarios pueden crear, actualizar, marcar como completadas o eliminar tareas. Además, la autenticación se maneja mediante JWT para garantizar la seguridad, y se cuenta con un sistema de roles para controlar el acceso a ciertas funciones. El backend está desarrollado en Spring Boot 3 y Java 17, mientras que el frontend está construido con React y estilizado con Tailwind CSS.
 
-2. [Arquitectura](#arquitectura)
+## 🔗 Enlaces
 
-3. [Configuración del Entorno](#configuración-del-entorno)
+🚀 Deploy Frontend: https://taskmanager.alejoczombos.com.ar
 
-   - [Requisitos del Sistema](#requisitos-del-sistema)
-   - [Instrucciones de Implementación](#instrucciones-de-implementación)
-     - [Backend](#backend)
-     - [Frontend](#frontend)
+🚀 Deploy Docs: https://taskmanager-back.alejoczombos.com.ar/docs
 
-4. [Modelo de Datos](#modelo-de-datos)
+☝️ (El enlace lleva a la documentación interactiva de la API, donde puedes probar los endpoints y revisar la implementación de la seguridad JWT.)*Demora un poco en cargar al principio por el hosting*
 
-   - [Diagrama de Entidad-Relación (ER)](#diagrama-de-entidad-relación-er)
-   - [Descripción de Entidades](#descripción-de-entidades)
-     - [Tarea](#tarea)
-     - [Usuario (User)](#usuario-user)
-     - [Rol (Role)](#rol-role)
+## 🛠️ Tecnologías Utilizadas
 
-5. [API REST](#api-rest)
+- **Backend**
+  - Java 17 ☕ 
+  - Spring Boot 3 🌱 
+  - PostgreSQL 🗄️
+  - Hibernate / JPA 🔄
+  - JWT + Spring Security 🔐
+  - JUnit 5 + Mockito 🧪 
+  - Swagger 📄
+- **Frontend**
+  - React ⚛️ 
+  - Tailwind CSS 🎨
 
+## 🌟 Características Principales
+- Autenticación y Autorización con JWT para proteger los recursos de la API. 
+- Gestión de tareas por usuario: Crear, actualizar, eliminar y marcar como completadas. 
+- Sistema de roles: Admin y usuarios con diferentes permisos. 
+- Pruebas unitarias con JUnit y Mockito. 
+- Documentación interactiva de la API con Swagger. 
+- Frontend dinámico y responsive con React y Tailwind CSS.
+
+## 🗂️ Índice
+
+- [Descripción del Proyecto 📖](#-descripción-del-proyecto)
+- [Enlaces 🔗](#-enlaces)
+- [Tecnologías Utilizadas 🛠️](#️-tecnologías-utilizadas)
+- [Características Principales 🌟](#-características-principales)
+- [Configuración del Entorno ⚙️](#configuración-del-entorno)
+- [Modelo de Datos 📊](#modelo-de-datos)
+  - [Diagrama de Entidad-Relación (ER)](#diagrama-de-entidad-relación-er)
+  - [Descripción de Entidades](#descripción-de-entidades)
+    - [Tarea](#tarea)
+    - [Usuario (User)](#usuario-user)
+    - [Rol (Role)](#rol-role)
+- [Seguridad 🔒](#seguridad)
+   - [Configuración de Spring Security y JWT](#configuración-de-spring-security-y-jwt)
+   - [Protección de Rutas y Recursos](#protección-de-rutas-y-recursos)
+- [API REST 🚀](#api-rest)
    - [TaskController](#taskcontroller)
-
      - [Obtener Tarea por ID](#obtener-tarea-por-id)
      - [Obtener Todas las Tareas por ID de Usuario](#obtener-todas-las-tareas-por-id-de-usuario)
      - [Obtener Todas las Tareas Completadas por ID de Usuario](#obtener-todas-las-tareas-completadas-por-id-de-usuario)
@@ -35,54 +61,9 @@
      - [Actualizar Tarea Existente](#actualizar-tarea-existente)
      - [Cambia el Estado de una tarea por su ID](#cambia-el-estado-de-una-tarea-por-su-id)
      - [Eliminar Tarea por ID](#eliminar-tarea-por-id)
-
    - [AuthController](#authcontroller)
-
      - [Iniciar Sesión (Login)](#iniciar-sesión-login)
      - [Registrar Nuevo Usuario](#registrar-nuevo-usuario)
-
-6. [Seguridad](#seguridad)
-
-   - [Configuración de Spring Security y JWT](#configuración-de-spring-security-y-jwt)
-   - [Protección de Rutas y Recursos](#protección-de-rutas-y-recursos)
-
-7. [Despliegue](#despliegue)
-   - [Frontend](#deploy-frontend)
-   - [Backend](#deploy-backend)
-
-## Introducción
-
-### Descripción del Proyecto
-
-El Gestor de Tareas es una aplicación Full Stack construida con Spring Boot 3 y Java 17 para el backend y React con Tailwind CSS para el frontend. La autenticación se basa en JWT, utilizando Spring Security para la seguridad del backend y react-router-dom para la navegación en el frontend.
-
-### Tecnologías Utilizadas
-
-- Backend:
-
-  - Spring Boot 3
-  - Java 17
-  - Spring Security
-  - JWT
-  - Maven
-  - Hibernate / JPA
-  - JUnit 5 / Mockito
-  - Swagger / OpenAPI
-
-- Base de Datos:
-
-  - PostgreSQL
-
-- Frontend:
-  - React
-  - Tailwind CSS
-  - react-router-dom
-  - react-hook-form
-  - react-hot-toast
-
-## Arquitectura
-
-La aplicación sigue una arquitectura monolítica, con el backend implementado como una API RESTful y el frontend como una aplicación de una sola página (SPA).
 
 ## Configuración del Entorno
 
@@ -366,15 +347,3 @@ Las rutas y recursos sensibles de la API están protegidos mediante Spring Secur
     "lastname": "String"
   }
   ```
-
-## Despliegue
-
-Tanto el backend como el frontend e incluso la Base de Datos están desplegados en [Render](https://render.com/). Puedes acceder a ellas mediante los siguientes enlaces.
-
-### Deploy Frontend
-
-[![Despliegue del Frontend](https://render.com/images/deploy-to-render-button.svg)](https://taskmanager-u3h3.onrender.com)
-
-### Deploy Backend
-
-[![Despliegue del Frontend](https://render.com/images/deploy-to-render-button.svg)](https://taskmanager-back.onrender.com)
