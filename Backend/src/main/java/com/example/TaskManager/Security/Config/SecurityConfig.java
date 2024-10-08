@@ -44,7 +44,7 @@ public class SecurityConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**").allowedOrigins("http://localhost:5173").allowedMethods("GET", "POST", "PUT", "DELETE");
                 registry.addMapping("/**").allowedOrigins("https://taskmanager-u3h3.onrender.com").allowedMethods("GET", "POST", "PUT", "DELETE");
-                registry.addMapping("/**").allowedOrigins("https://taskmanager-back.alejoczombos.com.ar").allowedMethods("GET", "POST", "PUT", "DELETE");
+                registry.addMapping("/**").allowedOrigins("https://taskmanager.alejoczombos.com.ar").allowedMethods("GET", "POST", "PUT", "DELETE");
             }
         };
     }
