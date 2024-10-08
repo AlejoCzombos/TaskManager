@@ -1,5 +1,7 @@
+com\example\TaskManager\Controller\AuthControllerTest.class
+com\example\TaskManager\Controller\TaskControllerTest.class
+com\example\TaskManager\Service\TaskServiceTest.class
 com\example\TaskManager\Controller\WithMockUser.class
 com\example\TaskManager\Controller\WithMockUserSecurityContextFactory.class
 com\example\TaskManager\Repository\UserRepositoryTest.class
 com\example\TaskManager\Repository\TaskRepositoryTest.class
-com\example\TaskManager\Service\TaskServiceTest.class
